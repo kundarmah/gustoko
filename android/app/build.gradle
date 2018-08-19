@@ -94,11 +94,11 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 27
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.gustoko"
+        applicationId "com.dm.gustokoph"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -137,12 +137,22 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fbsdk')
+    compile project(':react-native-firebase')
+    compile project(':react-native-config')
     compile project(':react-native-i18n')
     compile project(':react-native-vector-icons')
     compile project(':react-native-device-info')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
+    compile 'com.google.firebase:firebase-core:16.0.1'
+    implementation "com.google.android.gms:play-services-base:15.0.1"
+    implementation "com.google.firebase:firebase-auth:16.0.2"
+    implementation project(':react-native-firebase')
+
+
+
 }
 
 // Run this once to be able to run the application with BUCK
@@ -151,3 +161,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
