@@ -3,7 +3,11 @@ package com.dm.gustokoph;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.i18n.reactnativei18n.ReactNativeI18n;
+import com.microsoft.codepush.react.CodePush;
+import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
+import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
+import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.facebook.react.ReactNativeHost;
@@ -20,6 +24,8 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
 
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,6 +38,12 @@ public class MainApplication extends Application implements ReactApplication {
   }
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+
+        @Override
+        protected String getJSBundleFile() {
+        return CodePush.getJSBundleFile();
+        }
+    
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -41,13 +53,18 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
+            new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
+            new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
+            new AppCenterReactNativePackage(MainApplication.this),
+            new MapsPackage(),
             new FBSDKPackage(mCallbackManager),
-            new ReactNativeI18n(),
             new VectorIconsPackage(),
             new RNDeviceInfo(),
             new RNFirebasePackage(),
             new RNFirebaseAuthPackage(),
-            new RNFirebaseFirestorePackage()
+            new RNFirebaseFirestorePackage(),
+            new RNI18nPackage()
       );
     }
 

@@ -25,6 +25,9 @@
   },
   "dependencies": {
     "apisauce": "^0.14.2",
+    "appcenter": "^1.8.1",
+    "appcenter-analytics": "^1.8.1",
+    "appcenter-crashes": "^1.8.1",
     "format-json": "^1.0.3",
     "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.4",
@@ -34,11 +37,14 @@
     "react": "16.3.1",
     "react-native": "0.55.1",
     "react-native-animatable": "^1.3.0",
+    "react-native-code-push": "^5.4.2",
     "react-native-config": "^0.10.0",
     "react-native-device-info": "^0.22.4",
     "react-native-fbsdk": "^0.7.0",
     "react-native-firebase": "^4.3.8",
-    "react-native-i18n": "^1.0.0",
+    "react-native-i18n": "^2.0.15",
+    "react-native-maps": "^0.21.0",
+    "react-native-responsive-screen": "^1.1.9",
     "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11",
     "react-navigation-redux-helpers": "^1.0.4",
@@ -93,7 +99,10 @@
       "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy"
     },
     "setupFiles": [
-      "<rootDir>/Tests/Setup"
+      "<rootDir>/Tests/Setup",
+      "<rootDir>/node_modules/appcenter/test/AppCenterMock.js",
+      "<rootDir>/node_modules/appcenter-analytics/test/AppCenterAnalyticsMock.js",
+      "<rootDir>/node_modules/appcenter-crashes/test/AppCenterCrashesMock.js"
     ],
     "preset": "react-native"
   },

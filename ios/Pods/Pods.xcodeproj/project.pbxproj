@@ -1,0 +1,818 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		049FC0CA5002CE4663E9615A4E4366C8 /* Pods-GustoKo-tvOSTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D744C0B6056F0C82F0E642D199DE330 /* Pods-GustoKo-tvOSTests-dummy.m */; };
+		38AC41D645354A3D738830D9A5B04330 /* Pods-GustoKo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D8592DB3F5CD9CC069B10625ACCB2739 /* Pods-GustoKo-dummy.m */; };
+		3DEBD860B63C0415A7542853D819DD12 /* Pods-GustoKoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A34CC4F1586DE0B0B03EED7F75B64F /* Pods-GustoKoTests-dummy.m */; };
+		4B82F87BF3112EB93861905A887F27D7 /* Pods-GustoKo-tvOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4C4AD0875489ADC11F0B5DD6482471A /* Pods-GustoKo-tvOS-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3008EED33A4AD282B69FB8DAC7C81D1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C521235072B07DB0712E48AED362B1B7;
+			remoteInfo = "Pods-GustoKo";
+		};
+		3A8D40376502389A05CC4538CFEC9A16 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13863EAB4B263C30578D9F73E1F37A9D;
+			remoteInfo = "Pods-GustoKo-tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1002C98CC4C99CFF8359E8F4EA27C1EC /* libPods-GustoKo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-GustoKo.a"; path = "libPods-GustoKo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		137C01FA097F89CE1EDA98AAC701878E /* libPods-GustoKo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-GustoKo-tvOS.a"; path = "libPods-GustoKo-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15365151B73902A31E8525A43090D4A7 /* Pods-GustoKo-tvOSTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GustoKo-tvOSTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		1FF8CBE3D70C3B5EE02BF7F1402952A2 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
+		2117044F04A4ED6A4F6EA70FA0F1480B /* Pods-GustoKoTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKoTests-frameworks.sh"; sourceTree = "<group>"; };
+		23A34CC4F1586DE0B0B03EED7F75B64F /* Pods-GustoKoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GustoKoTests-dummy.m"; sourceTree = "<group>"; };
+		26963595D415E4CE6BDEBB4562B1C704 /* Pods-GustoKo-tvOSTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GustoKo-tvOSTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2E280B58529AEBA76B5F11C0705D0856 /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
+		365F70FB31799320D8E0DF54C9F28549 /* Pods-GustoKoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GustoKoTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3DE0F151085A0F94357E13C37F0416E5 /* Pods-GustoKo-tvOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GustoKo-tvOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		4789B3BAF9C40B8397A993F297AEADB2 /* Pods-GustoKo-tvOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKo-tvOS-resources.sh"; sourceTree = "<group>"; };
+		5D744C0B6056F0C82F0E642D199DE330 /* Pods-GustoKo-tvOSTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GustoKo-tvOSTests-dummy.m"; sourceTree = "<group>"; };
+		64D22FE809D0117ACA118449A98A7159 /* Pods-GustoKo-tvOSTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKo-tvOSTests-resources.sh"; sourceTree = "<group>"; };
+		697057EB6F6A315777E7EA941A2AAF3B /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/iOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
+		7014E893782026A687577727602544D2 /* libPods-GustoKoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-GustoKoTests.a"; path = "libPods-GustoKoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		751FFB4D01E44A8E65FA1E1873E3B7EC /* Pods-GustoKo-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKo-resources.sh"; sourceTree = "<group>"; };
+		7E88E3B43BFA7D04FC63C4CBAA76B131 /* Pods-GustoKoTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKoTests-resources.sh"; sourceTree = "<group>"; };
+		7F4BAA57378C1DCCD597093BCA553031 /* Pods-GustoKo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKo.debug.xcconfig"; sourceTree = "<group>"; };
+		8473BA2E48860F0A8654CCBB1AF2439F /* Pods-GustoKoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKoTests.release.xcconfig"; sourceTree = "<group>"; };
+		88C037B691671D3F7EA4DCE79A71C092 /* Pods-GustoKoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8D079713A929D5F18C112A157F14F2B7 /* libPods-GustoKo-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-GustoKo-tvOSTests.a"; path = "libPods-GustoKo-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		944EB8481CBC6E57D7E282135F6761AC /* Pods-GustoKo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GustoKo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9953DE4973AB3FBC51CE92617282055C /* Pods-GustoKoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GustoKoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9F384E4D91406B3E2239D3B2FAA59803 /* Pods-GustoKo-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKo-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		B21D33386297A6C0A838D04704B9E62B /* Pods-GustoKo-tvOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GustoKo-tvOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B3D58F2BCB2A6280BE3F373FE7410C64 /* Pods-GustoKo-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKo-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		B8412BC2E197FB9F97C9FA4A9170CBED /* Pods-GustoKo-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKo-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		C4C4AD0875489ADC11F0B5DD6482471A /* Pods-GustoKo-tvOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GustoKo-tvOS-dummy.m"; sourceTree = "<group>"; };
+		C8182E41F851B65B2F0D53A3CCEC6494 /* Pods-GustoKo-tvOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKo-tvOS-frameworks.sh"; sourceTree = "<group>"; };
+		D0481E6B39E53113CB32331072D8824B /* Pods-GustoKo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKo.release.xcconfig"; sourceTree = "<group>"; };
+		D46ED3EA5B4C290CC7022708650D7330 /* Pods-GustoKo-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GustoKo-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6D579007294756FDB25D4DE3F8D8854 /* Pods-GustoKo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKo-frameworks.sh"; sourceTree = "<group>"; };
+		D8592DB3F5CD9CC069B10625ACCB2739 /* Pods-GustoKo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GustoKo-dummy.m"; sourceTree = "<group>"; };
+		DC65AFFB7964130E42157D207BE3A6DE /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/iOS/AppCenter.framework"; sourceTree = "<group>"; };
+		FA213CAAA74DFD5BF7CF877879514962 /* Pods-GustoKo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GustoKo-acknowledgements.plist"; sourceTree = "<group>"; };
+		FFFD2D1BC8D6DD9FF5602650811FF629 /* Pods-GustoKo-tvOSTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GustoKo-tvOSTests-frameworks.sh"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0CCC89E08E1B015FE5AD48541AF0CA8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1DD0F97F1F4D6B1F1143022AA39D1E2F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3166A03EBA9B36633182B1EC017BEED1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73C83DEED7A7CE4C657C9E82FB3BB3F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C0416FA3744ECAB6C76E95960896084 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC65AFFB7964130E42157D207BE3A6DE /* AppCenter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2299AF501E253B95F2AE1FAD00A3B182 /* Crashes */ = {
+			isa = PBXGroup;
+			children = (
+				4789B2888C9F3A64D9BB98A64504484B /* Frameworks */,
+			);
+			name = Crashes;
+			sourceTree = "<group>";
+		};
+		260E672E181DB8BDAC7A2999772A7AE4 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				8E2C96EA6162ABA11EBE8E8817909062 /* Frameworks */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		29CB2E1164572F4C7BAB82A05A43C2F0 /* Pods-GustoKo-tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				B21D33386297A6C0A838D04704B9E62B /* Pods-GustoKo-tvOS-acknowledgements.markdown */,
+				3DE0F151085A0F94357E13C37F0416E5 /* Pods-GustoKo-tvOS-acknowledgements.plist */,
+				C4C4AD0875489ADC11F0B5DD6482471A /* Pods-GustoKo-tvOS-dummy.m */,
+				C8182E41F851B65B2F0D53A3CCEC6494 /* Pods-GustoKo-tvOS-frameworks.sh */,
+				4789B3BAF9C40B8397A993F297AEADB2 /* Pods-GustoKo-tvOS-resources.sh */,
+				9F384E4D91406B3E2239D3B2FAA59803 /* Pods-GustoKo-tvOS.debug.xcconfig */,
+				B3D58F2BCB2A6280BE3F373FE7410C64 /* Pods-GustoKo-tvOS.release.xcconfig */,
+			);
+			name = "Pods-GustoKo-tvOS";
+			path = "Target Support Files/Pods-GustoKo-tvOS";
+			sourceTree = "<group>";
+		};
+		2D20FC01AE47C04E62202F456C8DC21D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				0C0416FA3744ECAB6C76E95960896084 /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		4789B2888C9F3A64D9BB98A64504484B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FF8CBE3D70C3B5EE02BF7F1402952A2 /* AppCenterCrashes.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6D836C3FC0DA207AB0D82C4C345B95CC /* Pods-GustoKoTests */ = {
+			isa = PBXGroup;
+			children = (
+				9953DE4973AB3FBC51CE92617282055C /* Pods-GustoKoTests-acknowledgements.markdown */,
+				365F70FB31799320D8E0DF54C9F28549 /* Pods-GustoKoTests-acknowledgements.plist */,
+				23A34CC4F1586DE0B0B03EED7F75B64F /* Pods-GustoKoTests-dummy.m */,
+				2117044F04A4ED6A4F6EA70FA0F1480B /* Pods-GustoKoTests-frameworks.sh */,
+				7E88E3B43BFA7D04FC63C4CBAA76B131 /* Pods-GustoKoTests-resources.sh */,
+				88C037B691671D3F7EA4DCE79A71C092 /* Pods-GustoKoTests.debug.xcconfig */,
+				8473BA2E48860F0A8654CCBB1AF2439F /* Pods-GustoKoTests.release.xcconfig */,
+			);
+			name = "Pods-GustoKoTests";
+			path = "Target Support Files/Pods-GustoKoTests";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				0F8D2E47FE03D3B91B51069F7C273AF4 /* Frameworks */,
+				B1C0FD4C526B54B6F7B5EA76C32A7B4C /* Pods */,
+				8248F631BDE55CE7F225CF1352760233 /* Products */,
+				F0A102A12863FD137E641961D975C3D1 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8248F631BDE55CE7F225CF1352760233 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1002C98CC4C99CFF8359E8F4EA27C1EC /* libPods-GustoKo.a */,
+				137C01FA097F89CE1EDA98AAC701878E /* libPods-GustoKo-tvOS.a */,
+				8D079713A929D5F18C112A157F14F2B7 /* libPods-GustoKo-tvOSTests.a */,
+				7014E893782026A687577727602544D2 /* libPods-GustoKoTests.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E2C96EA6162ABA11EBE8E8817909062 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				697057EB6F6A315777E7EA941A2AAF3B /* AppCenterAnalytics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A19C78C4F07A350B11B5D249B210E1BB /* Pods-GustoKo-tvOSTests */ = {
+			isa = PBXGroup;
+			children = (
+				26963595D415E4CE6BDEBB4562B1C704 /* Pods-GustoKo-tvOSTests-acknowledgements.markdown */,
+				15365151B73902A31E8525A43090D4A7 /* Pods-GustoKo-tvOSTests-acknowledgements.plist */,
+				5D744C0B6056F0C82F0E642D199DE330 /* Pods-GustoKo-tvOSTests-dummy.m */,
+				FFFD2D1BC8D6DD9FF5602650811FF629 /* Pods-GustoKo-tvOSTests-frameworks.sh */,
+				64D22FE809D0117ACA118449A98A7159 /* Pods-GustoKo-tvOSTests-resources.sh */,
+				D46ED3EA5B4C290CC7022708650D7330 /* Pods-GustoKo-tvOSTests.debug.xcconfig */,
+				B8412BC2E197FB9F97C9FA4A9170CBED /* Pods-GustoKo-tvOSTests.release.xcconfig */,
+			);
+			name = "Pods-GustoKo-tvOSTests";
+			path = "Target Support Files/Pods-GustoKo-tvOSTests";
+			sourceTree = "<group>";
+		};
+		AFBE4BB69841823752868252A6947BB5 /* Pods-GustoKo */ = {
+			isa = PBXGroup;
+			children = (
+				944EB8481CBC6E57D7E282135F6761AC /* Pods-GustoKo-acknowledgements.markdown */,
+				FA213CAAA74DFD5BF7CF877879514962 /* Pods-GustoKo-acknowledgements.plist */,
+				D8592DB3F5CD9CC069B10625ACCB2739 /* Pods-GustoKo-dummy.m */,
+				D6D579007294756FDB25D4DE3F8D8854 /* Pods-GustoKo-frameworks.sh */,
+				751FFB4D01E44A8E65FA1E1873E3B7EC /* Pods-GustoKo-resources.sh */,
+				7F4BAA57378C1DCCD597093BCA553031 /* Pods-GustoKo.debug.xcconfig */,
+				D0481E6B39E53113CB32331072D8824B /* Pods-GustoKo.release.xcconfig */,
+			);
+			name = "Pods-GustoKo";
+			path = "Target Support Files/Pods-GustoKo";
+			sourceTree = "<group>";
+		};
+		B1C0FD4C526B54B6F7B5EA76C32A7B4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6F4E16E170AFF42D929EF8FFF92078F /* AppCenter */,
+				FDE42022E7C36FE2A980950DD051F732 /* AppCenterReactNativeShared */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D6F4E16E170AFF42D929EF8FFF92078F /* AppCenter */ = {
+			isa = PBXGroup;
+			children = (
+				260E672E181DB8BDAC7A2999772A7AE4 /* Analytics */,
+				2D20FC01AE47C04E62202F456C8DC21D /* Core */,
+				2299AF501E253B95F2AE1FAD00A3B182 /* Crashes */,
+			);
+			name = AppCenter;
+			path = AppCenter;
+			sourceTree = "<group>";
+		};
+		F0A102A12863FD137E641961D975C3D1 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFBE4BB69841823752868252A6947BB5 /* Pods-GustoKo */,
+				29CB2E1164572F4C7BAB82A05A43C2F0 /* Pods-GustoKo-tvOS */,
+				A19C78C4F07A350B11B5D249B210E1BB /* Pods-GustoKo-tvOSTests */,
+				6D836C3FC0DA207AB0D82C4C345B95CC /* Pods-GustoKoTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		F84ACEF4E4D3666C3A595115D01D3868 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E280B58529AEBA76B5F11C0705D0856 /* AppCenterReactNativeShared.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDE42022E7C36FE2A980950DD051F732 /* AppCenterReactNativeShared */ = {
+			isa = PBXGroup;
+			children = (
+				F84ACEF4E4D3666C3A595115D01D3868 /* Frameworks */,
+			);
+			name = AppCenterReactNativeShared;
+			path = AppCenterReactNativeShared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		468A71AF1E7158600A2BB18DA6476587 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		51845C0F7E32FE45994B3CF1DB55C029 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F07C9258E88601CD374FB697E5A91697 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F26BE19FB2BA4A26375485F0C8565EE2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		13863EAB4B263C30578D9F73E1F37A9D /* Pods-GustoKo-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17300F9FDFAE30519EA724AE6BDCF2B4 /* Build configuration list for PBXNativeTarget "Pods-GustoKo-tvOS" */;
+			buildPhases = (
+				51845C0F7E32FE45994B3CF1DB55C029 /* Headers */,
+				8CBD19CDC5B7E0B60B8457F8340CBDCC /* Sources */,
+				3166A03EBA9B36633182B1EC017BEED1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-GustoKo-tvOS";
+			productName = "Pods-GustoKo-tvOS";
+			productReference = 137C01FA097F89CE1EDA98AAC701878E /* libPods-GustoKo-tvOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		41B2AD8E32246884D3D8124DC2D668AC /* Pods-GustoKo-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 17408C683E6472F020DA20E4CC65783F /* Build configuration list for PBXNativeTarget "Pods-GustoKo-tvOSTests" */;
+			buildPhases = (
+				468A71AF1E7158600A2BB18DA6476587 /* Headers */,
+				897B62AE2B2D24F575F1F3C4059D3660 /* Sources */,
+				1DD0F97F1F4D6B1F1143022AA39D1E2F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A14331CFCA15BF29A8D8674E1696D211 /* PBXTargetDependency */,
+			);
+			name = "Pods-GustoKo-tvOSTests";
+			productName = "Pods-GustoKo-tvOSTests";
+			productReference = 8D079713A929D5F18C112A157F14F2B7 /* libPods-GustoKo-tvOSTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C521235072B07DB0712E48AED362B1B7 /* Pods-GustoKo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCFE6A614261B50A8C687096E7A81973 /* Build configuration list for PBXNativeTarget "Pods-GustoKo" */;
+			buildPhases = (
+				F26BE19FB2BA4A26375485F0C8565EE2 /* Headers */,
+				E6545550D07432F6DA67D50E3D04FFD5 /* Sources */,
+				E73C83DEED7A7CE4C657C9E82FB3BB3F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-GustoKo";
+			productName = "Pods-GustoKo";
+			productReference = 1002C98CC4C99CFF8359E8F4EA27C1EC /* libPods-GustoKo.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		FFBA3E28A6459CB1C371326F0F289FD3 /* Pods-GustoKoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 598D47E88170284DC47980AE98A00C1F /* Build configuration list for PBXNativeTarget "Pods-GustoKoTests" */;
+			buildPhases = (
+				F07C9258E88601CD374FB697E5A91697 /* Headers */,
+				442D9365E810F3E4902F37F9735E1F28 /* Sources */,
+				0CCC89E08E1B015FE5AD48541AF0CA8C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8DCE2912355B082A89B08C3A4CA9B91E /* PBXTargetDependency */,
+			);
+			name = "Pods-GustoKoTests";
+			productName = "Pods-GustoKoTests";
+			productReference = 7014E893782026A687577727602544D2 /* libPods-GustoKoTests.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 8248F631BDE55CE7F225CF1352760233 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C521235072B07DB0712E48AED362B1B7 /* Pods-GustoKo */,
+				13863EAB4B263C30578D9F73E1F37A9D /* Pods-GustoKo-tvOS */,
+				41B2AD8E32246884D3D8124DC2D668AC /* Pods-GustoKo-tvOSTests */,
+				FFBA3E28A6459CB1C371326F0F289FD3 /* Pods-GustoKoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		442D9365E810F3E4902F37F9735E1F28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DEBD860B63C0415A7542853D819DD12 /* Pods-GustoKoTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		897B62AE2B2D24F575F1F3C4059D3660 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				049FC0CA5002CE4663E9615A4E4366C8 /* Pods-GustoKo-tvOSTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CBD19CDC5B7E0B60B8457F8340CBDCC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B82F87BF3112EB93861905A887F27D7 /* Pods-GustoKo-tvOS-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E6545550D07432F6DA67D50E3D04FFD5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38AC41D645354A3D738830D9A5B04330 /* Pods-GustoKo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8DCE2912355B082A89B08C3A4CA9B91E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GustoKo";
+			target = C521235072B07DB0712E48AED362B1B7 /* Pods-GustoKo */;
+			targetProxy = 3008EED33A4AD282B69FB8DAC7C81D1A /* PBXContainerItemProxy */;
+		};
+		A14331CFCA15BF29A8D8674E1696D211 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-GustoKo-tvOS";
+			target = 13863EAB4B263C30578D9F73E1F37A9D /* Pods-GustoKo-tvOS */;
+			targetProxy = 3A8D40376502389A05CC4538CFEC9A16 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		08BAFBD3F40038B995E4C6296840FA1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F4BAA57378C1DCCD597093BCA553031 /* Pods-GustoKo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		27565DF999F2F189A15F4D24EA964452 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		36B4FF1B36C5069F080183A552B5627F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3D58F2BCB2A6280BE3F373FE7410C64 /* Pods-GustoKo-tvOS.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		37C19E6ADF5F76F63F37BA9E330BCAB6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8412BC2E197FB9F97C9FA4A9170CBED /* Pods-GustoKo-tvOSTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4A81EEEA0200CF166ED592F2E62A1F23 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		6A1E260D687F87B8CE5739B75A2ABC15 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F384E4D91406B3E2239D3B2FAA59803 /* Pods-GustoKo-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		C4DB3233E7ED4E714A72C3010772DC19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D46ED3EA5B4C290CC7022708650D7330 /* Pods-GustoKo-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		E17C8E4BEEBEFCF8D01D61D3FC68A587 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88C037B691671D3F7EA4DCE79A71C092 /* Pods-GustoKoTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E1C02333D684FA9DEB6C5AD09FAC5533 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8473BA2E48860F0A8654CCBB1AF2439F /* Pods-GustoKoTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FD1BA846644F6B39D4B17FF684BA70F1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0481E6B39E53113CB32331072D8824B /* Pods-GustoKo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		17300F9FDFAE30519EA724AE6BDCF2B4 /* Build configuration list for PBXNativeTarget "Pods-GustoKo-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6A1E260D687F87B8CE5739B75A2ABC15 /* Debug */,
+				36B4FF1B36C5069F080183A552B5627F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		17408C683E6472F020DA20E4CC65783F /* Build configuration list for PBXNativeTarget "Pods-GustoKo-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C4DB3233E7ED4E714A72C3010772DC19 /* Debug */,
+				37C19E6ADF5F76F63F37BA9E330BCAB6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A81EEEA0200CF166ED592F2E62A1F23 /* Debug */,
+				27565DF999F2F189A15F4D24EA964452 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		598D47E88170284DC47980AE98A00C1F /* Build configuration list for PBXNativeTarget "Pods-GustoKoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E17C8E4BEEBEFCF8D01D61D3FC68A587 /* Debug */,
+				E1C02333D684FA9DEB6C5AD09FAC5533 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCFE6A614261B50A8C687096E7A81973 /* Build configuration list for PBXNativeTarget "Pods-GustoKo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				08BAFBD3F40038B995E4C6296840FA1E /* Debug */,
+				FD1BA846644F6B39D4B17FF684BA70F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
