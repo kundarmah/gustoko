@@ -28,6 +28,7 @@
     "appcenter": "^1.8.1",
     "appcenter-analytics": "^1.8.1",
     "appcenter-crashes": "^1.8.1",
+    "firebase-tools": "^4.2.1",
     "format-json": "^1.0.3",
     "identity-obj-proxy": "^3.0.0",
     "lodash": "^4.17.4",

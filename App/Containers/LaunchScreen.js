@@ -21,7 +21,7 @@ export default class LaunchScreen extends Component {
           <View style={styles.section} >
             <Image source={Images.ready} />
             <Text style={styles.sectionText}>
-              Gian With CodePush Setup is the Best! Will be working now on the Live Update!
+              First Trial Release using MyCode Push!
             </Text>
           </View>
           <LoginButton
