@@ -13,7 +13,7 @@ class RootContainer extends Component {
   componentDidMount () {
     //CodePush Sync
 
-    codePush.sync();
+    // codePush.sync();
 
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
