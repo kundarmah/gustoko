@@ -167,6 +167,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-auth0')
     compile 'com.android.support:multidex:1.0.3'
     compile project(':react-native-code-push')
     compile project(':appcenter-crashes')
@@ -185,7 +186,6 @@ dependencies {
     //compile 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-core:16.0.3'
     implementation "com.google.firebase:firebase-firestore:17.0.2"
-
 
     implementation(project(':react-native-maps')){
        exclude group: 'com.google.android.gms', module: 'play-services-base'

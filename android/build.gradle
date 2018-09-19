@@ -23,4 +23,18 @@ allprojects {
         }
         google()
     }
+    configurations.all {
+        resolutionStrategy {
+            eachDependency { DependencyResolveDetails details ->
+                if (details.requested.group == 'com.android.support' && details.requested.name == 'customtabs') {
+                    def launchUrlIntoducedVersion = 25
+                    def majorVersion = details.requested.version.tokenize('.')[0].toInteger()
+
+                    if (majorVersion < launchUrlIntoducedVersion) {
+                        details.useVersion "26.1.0"
+                    }
+                }
+            }
+        }
+    }
 }
