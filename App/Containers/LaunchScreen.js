@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { ScrollView, Text, Image, View } from 'react-native'
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
 
