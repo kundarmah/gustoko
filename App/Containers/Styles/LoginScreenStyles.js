@@ -3,8 +3,7 @@ import { Colors, Metrics } from '../../Themes'
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 70,
-    backgroundColor: Colors.background
+    backgroundColor: Colors.primaryColor,
   },
   form: {
     backgroundColor: Colors.snow,
@@ -46,7 +45,40 @@ export default StyleSheet.create({
     color: Colors.silver
   },
   topLogo: {
-    alignSelf: 'center',
-    resizeMode: 'contain'
-  }
+    alignSelf: 'center'
+  },
+  logo: {
+    fontFamily: 'Qwigley',
+    color: 'white',
+    fontSize: Metrics.hp('10%'),
+    textShadowColor: 'rgba(0, 0, 0, 0.75)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10,
+    paddingTop: Metrics.hp('16%')
+  },
+  logoContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: Metrics.hp('10%')
+  },
+  facebookButton: {
+    height: Metrics.hp('8%'),
+    backgroundColor: '#3b5999',
+    borderRadius: Metrics.hp('4%'),
+    alignItems: 'center',
+    justifyContent: 'center', 
+    marginHorizontal: Metrics.wp('5%'),
+    flexDirection: 'row'
+  },
+  facebookButtonText: {
+    color: 'white',
+    paddingLeft: 10,
+  },
+  backDrop: {
+    flex: 1,
+    position: 'absolute',
+    opacity: 0.8,
+    width: Metrics.wp('100%'),
+    height: Metrics.hp('100%')
+  },
 })

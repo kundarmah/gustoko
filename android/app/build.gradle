@@ -105,7 +105,7 @@ android {
         multiDexEnabled true
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 1
+        versionCode 2
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -143,14 +143,14 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            /*if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
               signingConfig signingConfigs.release
             } else {
               println '-------------------------------------------------'
               println 'The MYAPP_RELEASE_STORE_FILE property was not set!'
               println 'This release will not be signed by gradle!'
               println '-------------------------------------------------'
-            }*/
+            }
         }
     }
     // applicationVariants are e.g. debug, release
@@ -169,6 +169,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-linear-gradient')
     compile 'com.android.support:multidex:1.0.3'
     compile project(':react-native-code-push')
     compile project(':appcenter-crashes')

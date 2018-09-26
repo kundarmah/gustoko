@@ -8,12 +8,18 @@ import {
   TouchableOpacity,
   Image,
   Keyboard,
-  LayoutAnimation
+  LayoutAnimation,
+  ImageBackground
 } from 'react-native'
 import { connect } from 'react-redux'
+import { LoginManager, AccessToken } from 'react-native-fbsdk'
 import styles from './Styles/LoginScreenStyles'
-import {Images, Metrics} from '../Themes'
+import {Images, Metrics, Colors} from '../Themes'
 import LoginActions from '../Redux/LoginRedux'
+import { RegularText } from '../Components/TextWithFont'
+import LinearGradient from 'react-native-linear-gradient'
+import Icon from 'react-native-vector-icons/FontAwesome'
+
 
 class LoginScreen extends React.Component {
   static propTypes = {
@@ -93,64 +99,119 @@ class LoginScreen extends React.Component {
     this.setState({ password: text })
   }
 
-  render () {
+  handleFBLogin = () => {
+    LoginManager.logInWithReadPermissions(['public_profile']).then(
+      function(result) {
+        if (result.isCancelled) {
+          console.tron.log('Login cancelled');
+        } else {
+          AccessToken.getCurrentAccessToken().then(
+            (data) => {
+              console.log(data.accessToken.toString())
+            }
+          )
+        }
+      },
+      function(error) {
+        console.tron.log('Login fail with error: ' + error);
+      }
+    )
+  }
+
+  renderSocialLogin = () => {
+    return (
+      <View>
+        <TouchableOpacity
+          onPress={this.handleFBLogin}
+        >
+          <View style={styles.facebookButton}>
+            <Icon name="facebook-f" size={Metrics.hp('3%')} color="white" />
+            <RegularText styles={styles.facebookButtonText}>Log In with Facebook</RegularText>
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  renderLoginForm = () => {
     const { username, password } = this.state
     const { fetching } = this.props
     const editable = !fetching
     const textInputStyle = editable ? styles.textInput : styles.textInputReadonly
+
     return (
-      <ScrollView contentContainerStyle={{justifyContent: 'center'}} style={[styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
-        <Image source={Images.logo} style={[styles.topLogo, this.state.topLogo]} />
-        <View style={styles.form}>
-          <View style={styles.row}>
-            <Text style={styles.rowLabel}>Username</Text>
-            <TextInput
-              ref='username'
-              style={textInputStyle}
-              value={username}
-              editable={editable}
-              keyboardType='default'
-              returnKeyType='next'
-              autoCapitalize='none'
-              autoCorrect={false}
-              onChangeText={this.handleChangeUsername}
-              underlineColorAndroid='transparent'
-              onSubmitEditing={() => this.refs.password.focus()}
-              placeholder='Username' />
-          </View>
-
-          <View style={styles.row}>
-            <Text style={styles.rowLabel}>Password</Text>
-            <TextInput
-              ref='password'
-              style={textInputStyle}
-              value={password}
-              editable={editable}
-              keyboardType='default'
-              returnKeyType='go'
-              autoCapitalize='none'
-              autoCorrect={false}
-              secureTextEntry
-              onChangeText={this.handleChangePassword}
-              underlineColorAndroid='transparent'
-              onSubmitEditing={this.handlePressLogin}
-              placeholder='Password' />
-          </View>
-
-          <View style={[styles.loginRow]}>
-            <TouchableOpacity style={styles.loginButtonWrapper} onPress={this.handlePressLogin}>
-              <View style={styles.loginButton}>
-                <Text style={styles.loginText}>Sign In</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()}>
-              <View style={styles.loginButton}>
-                <Text style={styles.loginText}>Cancel</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+      <View style={styles.form}>
+        <View style={styles.row}>
+          <Text style={styles.rowLabel}>Username</Text>
+          <TextInput
+            ref='username'
+            style={textInputStyle}
+            value={username}
+            editable={editable}
+            keyboardType='default'
+            returnKeyType='next'
+            autoCapitalize='none'
+            autoCorrect={false}
+            onChangeText={this.handleChangeUsername}
+            underlineColorAndroid='transparent'
+            onSubmitEditing={() => this.refs.password.focus()}
+            placeholder='Username' />
         </View>
 
+        <View style={styles.row}>
+          <Text style={styles.rowLabel}>Password</Text>
+          <TextInput
+            ref='password'
+            style={textInputStyle}
+            value={password}
+            editable={editable}
+            keyboardType='default'
+            returnKeyType='go'
+            autoCapitalize='none'
+            autoCorrect={false}
+            secureTextEntry
+            onChangeText={this.handleChangePassword}
+            underlineColorAndroid='transparent'
+            onSubmitEditing={this.handlePressLogin}
+            placeholder='Password' />
+        </View>
+
+        <View style={[styles.loginRow]}>
+          <TouchableOpacity style={styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+            <View style={styles.loginButton}>
+              <Text style={styles.loginText}>Sign In</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()}>
+            <View style={styles.loginButton}>
+              <Text style={styles.loginText}>Cancel</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  }
+
+  render () {
+    return (
+      <ScrollView contentContainerStyle={{justifyContent: 'center', flex: 1}} style={[styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
+        <ImageBackground 
+          source={Images.backgroundLogin}
+          style={{flex: 1}}
+        >
+          <LinearGradient colors={[Colors.primaryColor, Colors.secondaryColor, 'transparent']} style={styles.backDrop}>
+          </LinearGradient>
+          <View style={styles.logoContainer}>
+            <RegularText 
+              fontFamily={'Qwigley'}
+              styles={styles.logo}
+              color={'white'}
+            >
+              GustoKo
+            </RegularText>
+          </View>
+          {this.renderSocialLogin()}
+        </ImageBackground>
       </ScrollView>
     )
   }

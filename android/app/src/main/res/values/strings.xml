@@ -3,6 +3,6 @@
     <string name="app_name">Gusto Ko</string>
     <string name="facebook_app_id">227554947935890</string>
 	<string name="fb_login_protocol_scheme">fb227554947935890</string>
-    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true">undefined</string>
-    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true">undefined</string>
+    <string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true">ALWAYS_SEND</string>
+    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true">ALWAYS_SEND</string>
 </resources>

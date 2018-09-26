@@ -4,6 +4,7 @@ import { ScrollView, Text, Image, View } from 'react-native'
 import { LoginButton, AccessToken } from 'react-native-fbsdk'
 
 import { Images } from '../Themes'
+import { LoginManager } from 'react-native-fbsdk';
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
