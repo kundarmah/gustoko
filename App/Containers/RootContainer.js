@@ -4,17 +4,12 @@ import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { connect } from 'react-redux'
 import StartupActions from '../Redux/StartupRedux'
 import ReduxPersist from '../Config/ReduxPersist'
-import codePush from 'react-native-code-push'
-
+import firebase from 'react-native-firebase'
 // Styles
 import styles from './Styles/RootContainerStyles'
 
 class RootContainer extends Component {
   componentDidMount () {
-    //CodePush Sync
-
-    // codePush.sync();
-
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
       this.props.startup()

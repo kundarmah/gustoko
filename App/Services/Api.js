@@ -1,5 +1,6 @@
 // a library to wrap and simplify api calls
 import apisauce from 'apisauce'
+import firebase from 'react-native-firebase'
 
 // our "constructor"
 const create = (baseURL = 'https://api.github.com/') => {
@@ -38,6 +39,16 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
 
+  const getFirebaseUser = (accessToken) => {
+    return firebase.auth()
+    .signInAndRetrieveDataWithCredential(
+      firebase.auth.FacebookAuthProvider.credential(accessToken)
+    ).then(function(resp){
+      console.tron.log('RESP: ', resp)
+      return resp
+    }).catch(error => error)
+  }
+
   // ------
   // STEP 3
   // ------
@@ -54,7 +65,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     // a list of the API functions from step 2
     getRoot,
     getRate,
-    getUser
+    getUser,
+    getFirebaseUser
   }
 }
 

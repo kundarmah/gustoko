@@ -99,23 +99,48 @@ class LoginScreen extends React.Component {
     this.setState({ password: text })
   }
 
-  handleFBLogin = () => {
-    LoginManager.logInWithReadPermissions(['public_profile']).then(
-      function(result) {
-        if (result.isCancelled) {
-          console.tron.log('Login cancelled');
-        } else {
-          AccessToken.getCurrentAccessToken().then(
-            (data) => {
-              console.log(data.accessToken.toString())
-            }
-          )
-        }
-      },
-      function(error) {
-        console.tron.log('Login fail with error: ' + error);
+  handleFBLogin = async () => {
+    let that = this
+    try {
+      const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+
+      if (result.isCancelled) {
+        console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
       }
-    )
+
+      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+
+      // get the access token
+      const data = await AccessToken.getCurrentAccessToken();
+
+      // create a new firebase credential with the token
+      console.tron.log(data)
+      this.props.attemptLogin(data.accessToken)
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  handleGmailLogin = async () => {
+    let that = this
+    try {
+      const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+
+      if (result.isCancelled) {
+        console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
+      }
+
+      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+
+      // get the access token
+      const data = await AccessToken.getCurrentAccessToken();
+
+      // create a new firebase credential with the token
+      console.tron.log(data)
+      this.props.attemptLogin(data.accessToken)
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   renderSocialLogin = () => {
@@ -225,7 +250,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    // attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
+    attemptLogin: (accessToken) => dispatch(LoginActions.loginRequest(accessToken))
   }
 }
 
