@@ -19,7 +19,8 @@ import LoginActions from '../Redux/LoginRedux'
 import { RegularText } from '../Components/TextWithFont'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome'
-
+import { GoogleSignin } from 'react-native-google-signin'
+import Secrets from 'react-native-config'
 
 class LoginScreen extends React.Component {
   static propTypes = {
@@ -114,34 +115,29 @@ class LoginScreen extends React.Component {
       const data = await AccessToken.getCurrentAccessToken();
 
       // create a new firebase credential with the token
-      console.tron.log(data)
-      this.props.attemptLogin(data.accessToken)
+      this.props.attemptLogin(null, data.accessToken)
     } catch (e) {
       console.error(e);
     }
   }
 
-  handleGmailLogin = async () => {
-    let that = this
+// Calling this function will open Google for login.
+  handleGoogleLogin = async () => {
     try {
-      const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+      // Add any configuration settings here:
+      await GoogleSignin.configure({
+        webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
+      });
 
-      if (result.isCancelled) {
-        console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
-      }
-
-      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
-
-      // get the access token
-      const data = await AccessToken.getCurrentAccessToken();
-
-      // create a new firebase credential with the token
-      console.tron.log(data)
-      this.props.attemptLogin(data.accessToken)
+      const data = await GoogleSignin.signIn();
+      console.tron.log('GMAIL: ', data)
+      this.props.attemptLogin(data.idToken, data.accessToken)
     } catch (e) {
       console.error(e);
     }
   }
+
+
 
   renderSocialLogin = () => {
     return (
@@ -151,7 +147,16 @@ class LoginScreen extends React.Component {
         >
           <View style={styles.facebookButton}>
             <Icon name="facebook-f" size={Metrics.hp('3%')} color="white" />
-            <RegularText styles={styles.facebookButtonText}>Log In with Facebook</RegularText>
+            <RegularText styles={styles.facebookButtonText}>SIGN IN WITH FACEBOOK</RegularText>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={this.handleGoogleLogin}
+          style={{marginTop: 10}}
+        >
+          <View style={[styles.facebookButton, {backgroundColor: 'white'}]}>
+            <Image style={styles.googleLogo} source={Images.googleLogin} />
+            <RegularText styles={styles.googleButtonText}>SIGN IN WITH GOOGLE</RegularText>
           </View>
         </TouchableOpacity>
       </View>
@@ -251,7 +256,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // attemptLogin: (username, password) => dispatch(LoginActions.loginRequest(username, password))
-    attemptLogin: (accessToken) => dispatch(LoginActions.loginRequest(accessToken))
+    attemptLogin: (idToken, accessToken) => dispatch(LoginActions.loginRequest(idToken, accessToken))
   }
 }
 

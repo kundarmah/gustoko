@@ -17,11 +17,21 @@ import { LoginSelectors } from '../Redux/LoginRedux'
 import rsf from '../Lib/FirebaseLib'
 
 export function * getLogin (api, action) {
-  const { accessToken } = action
-  // make the call to the api
-  try {
-    const response = yield call(api.getFirebaseUser, accessToken)
 
+  let { idToken, accessToken } = action
+  let response
+  // make the call to the api
+
+  console.tron.log('idToken: ', idToken)
+  try {
+    if(idToken === null){
+      console.tron.log('FACEBOOK AUTH SAGA')
+      response = yield call(api.getFirebaseUserFB, accessToken)
+    } else {
+      console.tron.log('GMAIL AUTH SAGA')
+      response = yield call(api.getFirebaseUserGMAIL, idToken, accessToken)
+    }
+   
     if (response) {
       // You might need to change the response here - do this with a 'transform',
       // located in ../Transforms/. Otherwise, just pass the data back from the api.

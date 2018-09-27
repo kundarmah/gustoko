@@ -46,6 +46,7 @@
     "react-native-device-info": "^0.22.4",
     "react-native-fbsdk": "^0.7.0",
     "react-native-firebase": "^5.0.0-rc4",
+    "react-native-google-signin": "^1.0.0-rc6",
     "react-native-i18n": "^2.0.15",
     "react-native-linear-gradient": "^2.4.2",
     "react-native-maps": "^0.21.0",

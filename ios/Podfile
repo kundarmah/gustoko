@@ -31,7 +31,8 @@ target 'GustoKo' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
-
+  pod 'GoogleSignIn'
+  
   platform :ios, '9.0'
   target 'GustoKoTests' do
     inherit! :search_paths

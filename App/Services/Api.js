@@ -39,10 +39,20 @@ const create = (baseURL = 'https://api.github.com/') => {
   const getRate = () => api.get('rate_limit')
   const getUser = (username) => api.get('search/users', {q: username})
 
-  const getFirebaseUser = (accessToken) => {
+  const getFirebaseUserFB = (accessToken) => {
     return firebase.auth()
     .signInAndRetrieveDataWithCredential(
       firebase.auth.FacebookAuthProvider.credential(accessToken)
+    ).then(function(resp){
+      console.tron.log('RESP: ', resp)
+      return resp
+    }).catch(error => error)
+  }
+
+  const getFirebaseUserGMAIL = (idToken, accessToken) => {
+    return firebase.auth()
+    .signInAndRetrieveDataWithCredential(
+      firebase.auth.GoogleAuthProvider.credential(idToken, accessToken)
     ).then(function(resp){
       console.tron.log('RESP: ', resp)
       return resp
@@ -66,7 +76,8 @@ const create = (baseURL = 'https://api.github.com/') => {
     getRoot,
     getRate,
     getUser,
-    getFirebaseUser
+    getFirebaseUserFB,
+    getFirebaseUserGMAIL
   }
 }
 

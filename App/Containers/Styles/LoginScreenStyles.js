@@ -73,6 +73,18 @@ export default StyleSheet.create({
   facebookButtonText: {
     color: 'white',
     paddingLeft: 10,
+    opacity: 0.54,
+    fontSize: 14
+  },
+  googleButtonText: {
+    color: Colors.primaryColor,
+    opacity: 0.54,
+    fontSize: 14
+  },
+  googleLogo: {
+    width: Metrics.hp('3%'),
+    height: Metrics.hp('3%'),
+    marginRight: 8
   },
   backDrop: {
     flex: 1,
