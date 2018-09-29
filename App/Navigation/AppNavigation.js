@@ -1,21 +1,18 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { StackNavigator, addNavigationHelpers } from 'react-navigation'
-import HomeScreen from '../Containers/HomeScreen'
-import LoginScreen from '../Containers/LoginScreen'
-
+import LoadingScreen from '../Containers/LoadingScreen'
 import AuthenticatedNavigator from './AuthenticatedNavigator'
 import UnauthenticatedNavigator from './UnauthenticatedNavigator'
-
 
 import styles from './Styles/NavigationStyles'
 
 // Manifest of possible screens
-const PrimaryNav = StackNavigator({
-  UnauthenticatedStack: { screen: UnauthenticatedNavigator },
+export const PrimaryNav = StackNavigator({
+  LoadingScreen: { screen: LoadingScreen },
   AuthenticatedStack: { screen: AuthenticatedNavigator },
-  HomeScreen: { screen: HomeScreen },
+  UnauthenticatedStack: { screen: UnauthenticatedNavigator }
 }, {
   // Default config for all screens
   headerMode: 'none',
@@ -43,4 +40,5 @@ function mapStateToProps (state) {
   }
 }
 
-export default PrimaryNav
+// export default PrimaryNav
+export default connect(mapStateToProps)(Navigation)

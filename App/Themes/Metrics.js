@@ -1,5 +1,10 @@
 import {Dimensions, Platform} from 'react-native'
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+  listenOrientationChange as lor,
+  removeOrientationListener as rol
+} from 'react-native-responsive-screen';
 
 const { width, height } = Dimensions.get('window')
 
@@ -31,7 +36,9 @@ const metrics = {
     logo: 200
   },
   wp: wp,
-  hp: hp
+  hp: hp,
+  lor: lor,
+  rol: rol
 }
 
 //Use React Native Responsive

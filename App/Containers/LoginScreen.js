@@ -46,6 +46,10 @@ class LoginScreen extends React.Component {
     console.tron.log('Working LoginScreen')
   }
 
+  componentDidMount () {
+    Metrics.lor(this)
+  }
+
   componentWillReceiveProps (newProps) {
     this.forceUpdate()
     // Did the login attempt complete?
@@ -64,6 +68,7 @@ class LoginScreen extends React.Component {
   componentWillUnmount () {
     this.keyboardDidShowListener.remove()
     this.keyboardDidHideListener.remove()
+    Metrics.rol()
   }
 
   keyboardDidShow = (e) => {
@@ -107,15 +112,13 @@ class LoginScreen extends React.Component {
 
       if (result.isCancelled) {
         console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
+      } else {
+        // get the access token
+        const data = await AccessToken.getCurrentAccessToken();
+
+        // create a new firebase credential with the token
+        this.props.attemptLogin(null, data.accessToken)
       }
-
-      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
-
-      // get the access token
-      const data = await AccessToken.getCurrentAccessToken();
-
-      // create a new firebase credential with the token
-      this.props.attemptLogin(null, data.accessToken)
     } catch (e) {
       console.error(e);
     }
