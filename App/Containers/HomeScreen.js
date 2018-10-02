@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
-import { ScrollView, Text } from 'react-native'
+import { ScrollView, Text, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import MapView, { UrlTile } from 'react-native-maps';
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-import styles from './Styles/HomeScreenStyle'
+const styles = StyleSheet.create({
+ container: {
+   flex: 1,
+   borderWidth: 1,
+   borderColor: 'red'
+ },
+ map: {
+   ...StyleSheet.absoluteFillObject,
+   flex: 1,
+   borderWidth: 1
+ },
+});
 
 class HomeScreen extends Component {
   // constructor (props) {
@@ -15,8 +28,23 @@ class HomeScreen extends Component {
 
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <Text>HomeScreen Container</Text>
+      <ScrollView contentContainerStyle={{flex: 1}}>
+        <View style={styles.container}>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          >
+            <UrlTile
+              urlTemplate="mapbox://styles/mapbox/dark-v9/{z}/{x}/{y}.png"
+              zIndex={-1}
+            />
+          </MapView>
+        </View>
       </ScrollView>
     )
   }

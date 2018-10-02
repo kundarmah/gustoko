@@ -5,6 +5,9 @@ import { StackNavigator, addNavigationHelpers } from 'react-navigation'
 import LoadingScreen from '../Containers/LoadingScreen'
 import AuthenticatedNavigator from './AuthenticatedNavigator'
 import UnauthenticatedNavigator from './UnauthenticatedNavigator'
+import {
+  createReduxBoundAddListener,
+} from 'react-navigation-redux-helpers'
 
 import styles from './Styles/NavigationStyles'
 
@@ -24,7 +27,7 @@ export const PrimaryNav = StackNavigator({
 const Navigation = ({ dispatch, navigation }) => {
   return (
     <PrimaryNav
-      navigation={addNavigationHelpers({ dispatch, state: navigation })}
+      navigation={addNavigationHelpers({ dispatch, state: navigation, addListener: createReduxBoundAddListener("root") })}
     />
   )
 }

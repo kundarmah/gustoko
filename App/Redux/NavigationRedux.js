@@ -7,18 +7,12 @@ const { getStateForAction } = PrimaryNav.router
 const INITIAL_STATE = getStateForAction(
   navigate({ routeName: 'LoadingScreen' })
 )
-const NOT_LOGGED_IN_STATE = getStateForAction(reset({
-  index: 0,
-  actions: [
-    navigate({ routeName: 'UnauthenticatedStack' })
-  ]
-}))
-const LOGGED_IN_STATE = getStateForAction(reset({
-  index: 0,
-  actions: [
-    navigate({ routeName: 'AuthenticatedStack' })
-  ]
-}))
+const NOT_LOGGED_IN_STATE = getStateForAction(
+  navigate({ routeName: 'UnauthenticatedStack' })
+)
+const LOGGED_IN_STATE = getStateForAction(
+  navigate({ routeName: 'AuthenticatedStack' })
+)
 /**
  * Creates an navigation action for dispatching to Redux.
  *

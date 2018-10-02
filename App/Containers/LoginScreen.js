@@ -19,7 +19,7 @@ import LoginActions from '../Redux/LoginRedux'
 import { RegularText } from '../Components/TextWithFont'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { GoogleSignin } from 'react-native-google-signin'
+import { GoogleSignin, statusCodes } from 'react-native-google-signin'
 import Secrets from 'react-native-config'
 
 class LoginScreen extends React.Component {
@@ -126,17 +126,35 @@ class LoginScreen extends React.Component {
 
 // Calling this function will open Google for login.
   handleGoogleLogin = async () => {
+    // try {
+    //   // Add any configuration settings here:
+    //   await GoogleSignin.configure({
+    //     webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
+    //   });
+
+    //   const data = await GoogleSignin.signIn();
+    //   console.tron.log('GMAIL: ', data)
+    //   this.props.attemptLogin(data.idToken, data.accessToken)
+    // } catch (e) {
+    //   console.error(e);
+    // }
+
     try {
-      // Add any configuration settings here:
       await GoogleSignin.configure({
         webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
       });
-
       const data = await GoogleSignin.signIn();
-      console.tron.log('GMAIL: ', data)
       this.props.attemptLogin(data.idToken, data.accessToken)
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (f.e. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error happened
+      }
     }
   }
 
