@@ -68,7 +68,12 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center', 
     marginHorizontal: Metrics.wp('5%'),
-    flexDirection: 'row'
+    flexDirection: 'row',
+    elevation:4,
+    // shadowOffset: { width: 5, height: 5 },
+    // shadowColor: "grey",
+    // shadowOpacity: 0.5,
+    // shadowRadius: 10,
   },
   facebookButtonText: {
     color: 'white',

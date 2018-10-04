@@ -39,7 +39,8 @@ class LoginScreen extends React.Component {
       username: 'reactnative@infinite.red',
       password: 'password',
       visibleHeight: Metrics.screenHeight,
-      topLogo: { width: Metrics.screenWidth }
+      topLogo: { width: Metrics.screenWidth },
+      loginButtonDisabled : false
     }
     this.isAttempting = false
 
@@ -107,47 +108,40 @@ class LoginScreen extends React.Component {
 
   handleFBLogin = async () => {
     let that = this
+    this.setState({ loginButtonDisabled : true })
     try {
       const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
 
       if (result.isCancelled) {
         console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
+        this.setState({ loginButtonDisabled : false })
       } else {
         // get the access token
         const data = await AccessToken.getCurrentAccessToken();
-
+        this.setState({ loginButtonDisabled : false })
         // create a new firebase credential with the token
         this.props.attemptLogin(null, data.accessToken)
       }
     } catch (e) {
       console.error(e);
+      this.setState({ loginButtonDisabled : false })
     }
   }
 
 // Calling this function will open Google for login.
   handleGoogleLogin = async () => {
-    // try {
-    //   // Add any configuration settings here:
-    //   await GoogleSignin.configure({
-    //     webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
-    //   });
-
-    //   const data = await GoogleSignin.signIn();
-    //   console.tron.log('GMAIL: ', data)
-    //   this.props.attemptLogin(data.idToken, data.accessToken)
-    // } catch (e) {
-    //   console.error(e);
-    // }
-
+    this.setState({ loginButtonDisabled : true })
     try {
       await GoogleSignin.configure({
         webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
       });
       const data = await GoogleSignin.signIn();
+      this.setState({ loginButtonDisabled : false })
       this.props.attemptLogin(data.idToken, data.accessToken)
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
+        this.setState({ loginButtonDisabled : false })
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (f.e. sign in) is in progress already
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
@@ -161,10 +155,13 @@ class LoginScreen extends React.Component {
 
 
   renderSocialLogin = () => {
+    const { loginButtonDisabled } = this.state
+
     return (
       <View>
         <TouchableOpacity
           onPress={this.handleFBLogin}
+          disabled={loginButtonDisabled}
         >
           <View style={styles.facebookButton}>
             <Icon name="facebook-f" size={Metrics.hp('3%')} color="white" />
@@ -173,6 +170,7 @@ class LoginScreen extends React.Component {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={this.handleGoogleLogin}
+          disabled={loginButtonDisabled}
           style={{marginTop: 10}}
         >
           <View style={[styles.facebookButton, {backgroundColor: 'white'}]}>
@@ -185,7 +183,7 @@ class LoginScreen extends React.Component {
   }
 
   renderLoginForm = () => {
-    const { username, password } = this.state
+    const { username, password, loginButtonDisabled } = this.state
     const { fetching } = this.props
     const editable = !fetching
     const textInputStyle = editable ? styles.textInput : styles.textInputReadonly
@@ -228,12 +226,12 @@ class LoginScreen extends React.Component {
         </View>
 
         <View style={[styles.loginRow]}>
-          <TouchableOpacity style={styles.loginButtonWrapper} onPress={this.handlePressLogin}>
+          <TouchableOpacity style={styles.loginButtonWrapper} onPress={this.handlePressLogin} disabled={this.state.loginButtonDisabled}>
             <View style={styles.loginButton}>
               <Text style={styles.loginText}>Sign In</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()}>
+          <TouchableOpacity style={styles.loginButtonWrapper} onPress={() => this.props.navigation.goBack()} disabled={this.state.loginButtonDisabled}>
             <View style={styles.loginButton}>
               <Text style={styles.loginText}>Cancel</Text>
             </View>

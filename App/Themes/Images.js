@@ -22,7 +22,8 @@ const images = {
   closeButton: require('../Images/Icons/close-button.png'),
   gustokoLogo: require('../Images/gustoko.png'),
   backgroundLogin: require('../Images/background-login.jpg'),
-  googleLogin: require('../Images/google-signin.png')
+  googleLogin: require('../Images/google-signin.png'),
+  mapMarker: require('../Images/mapmarker.png')
 }
 
 export default images

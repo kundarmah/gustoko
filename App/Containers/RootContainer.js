@@ -13,6 +13,15 @@ class RootContainer extends Component {
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
       this.props.startup()
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          // User is signed in.
+        } else {
+          this.props.navigate()
+          // No user is signed in.
+        }
+        console.tron.log('USER: ', user)
+      });
     }
   }
 
