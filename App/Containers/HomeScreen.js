@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, View, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native'
 import { connect } from 'react-redux'
 import {Images, Metrics, Colors} from '../Themes'
 import MapView, { UrlTile, Marker } from 'react-native-maps'
 import firebase from 'react-native-firebase'
 import LoginActions from '../Redux/LoginRedux'
-
+import Svg, { Image } from 'react-native-svg'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -13,7 +13,6 @@ import LoginActions from '../Redux/LoginRedux'
 const styles = StyleSheet.create({
  container: {
    flex: 1,
-   borderWidth: 1,
    borderColor: 'red'
  },
  map: {
@@ -30,22 +29,27 @@ class HomeScreen extends Component {
       user: null,
       latLong: {
         latitude: 37.78825,
-        longitude: -122.4324
+        longitude: -122.4324,
+        initialRender: true
       }
     }
   }
 
-  componentDidMount() {
-    let user = firebase.auth().currentUser;
-    
-    console.tron.log('USER', user)
+  componentDidMount () {
+    const that = this
 
-    if (user) {
-      // User is signed in.
-      this.setState({user: user})
-    } else {
-      // No user is signed in.
-    }
+    firebase.auth().onAuthStateChanged(authUser => {
+      if(authUser){
+        console.tron.log(authUser)
+
+        that.setState({user: authUser})
+        firebase
+        .firestore()
+        .collection('users')
+        .doc(authUser.uid)
+        .set()
+      }
+    });
   } 
 
   renderUserAvatar = () => {
@@ -72,7 +76,56 @@ class HomeScreen extends Component {
     )
   }
 
+  renderMarker = () => {
+    return (
+      <Marker
+          coordinate={this.state.latLong}
+      >
+          <View style={{
+              flexDirection: 'row', width: 100, height: 30,
+              backgroundColor: 'orange'
+          }}>
+              <Svg
+                  width={40} height={30}>
+                  <Image
+                      href={{uri: this.props.user.profile.picture}}
+                      width={40}
+                      height={30}
+                      onLoad={() => this.forceUpdate()}
+                  />
+              </Svg>
+              <View
+                  style={{
+                      flexDirection: 'column'
+
+                  }}
+              >
+                  <Text
+                      style={{
+                          marginLeft: 2,
+                          fontSize: 9,
+                          color: '#ffffff',
+                          fontWeight: 'bold',
+                          textDecorationLine: 'underline'
+                      }}
+                  >{this.props.user.profile.given_name}</Text>
+                  <Text
+                      style={{
+                          marginLeft: 2,
+                          fontSize: 9,
+                          color: '#ffffff',
+                          fontWeight: 'bold',
+                          textDecorationLine: 'underline'
+                      }}
+                  >{this.props.user.profile.given_name}</Text>
+              </View>
+          </View>
+      </Marker>
+    )
+  }
+
   render () {
+    const { user } = this.props
     return (
       <ScrollView contentContainerStyle={{flex: 1}}>
         <View style={styles.container}>
@@ -85,10 +138,7 @@ class HomeScreen extends Component {
               longitudeDelta: 0.0421,
             }}
           >
-            <Marker
-              coordinate={this.state.latLong}
-              image={Images.mapMarker}
-            />
+            {this.renderMarker()}
           </MapView>
           {this.renderUserAvatar()}
           {this.renderLogout()}
@@ -100,6 +150,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.login.user
   }
 }
 

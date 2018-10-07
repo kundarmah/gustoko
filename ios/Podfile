@@ -20,6 +20,7 @@ target 'GustoKo' do
     'RCTNetwork',
     'RCTWebSocket', # Needed for debugging
     'RCTAnimation', # Needed for FlatList and animations running on native UI thread
+    'RCTImage', # !!!!!
     # Add any other subspecs you want to use in your project
   ]
   # Explicitly include Yoga if you are using RN >= 0.42.0
@@ -32,6 +33,10 @@ target 'GustoKo' do
 
   pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
   pod 'GoogleSignIn'
+  pod 'lottie-ios', :path => '../node_modules/lottie-ios'
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
   
   platform :ios, '9.0'
   target 'GustoKoTests' do

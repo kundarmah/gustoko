@@ -23,14 +23,19 @@
           }
         },
         {
+          "client_id": "1066043128404-fmr37c3j021temlqctk9jcmo99jnrfs8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dm.gustokoph",
+            "certificate_hash": "250690688180946e5d004cd7ba48ca0008b9867c"
+          }
+        },
+        {
           "client_id": "1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
-        {
-          "current_key": "AIzaSyBje_nxABMnlzX1TE-yi7E1T6MEA0swaIo"
-        },
         {
           "current_key": "AIzaSyBje_nxABMnlzX1TE-yi7E1T6MEA0swaIo"
         }
