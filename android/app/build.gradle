@@ -189,8 +189,8 @@ dependencies {
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
     //compile 'com.google.firebase:firebase-core:16.0.1'
-    implementation 'com.google.firebase:firebase-core:16.0.3'
-    implementation "com.google.firebase:firebase-firestore:17.0.2"
+    //implementation 'com.google.firebase:firebase-core:16.0.3'
+    //implementation "com.google.firebase:firebase-firestore:17.0.2"
 
     implementation(project(':react-native-maps')){
        exclude group: 'com.google.android.gms', module: 'play-services-base'
@@ -199,8 +199,13 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:+'
     implementation 'com.google.android.gms:play-services-maps:+'
 
-    implementation "com.google.firebase:firebase-auth:16.0.2"
-    implementation 'com.google.firebase:firebase-perf:16.1.0'
+    implementation "com.google.firebase:firebase-core:16.0.4"
+    implementation "com.google.firebase:firebase-auth:16.0.4"
+    implementation "com.google.firebase:firebase-database:16.0.3"
+    implementation "com.google.firebase:firebase-messaging:17.3.2"
+    implementation "com.google.firebase:firebase-firestore:17.1.1"
+    implementation "com.google.firebase:firebase-perf:16.1.0"
+    //implementation "com.google.firebase:firebase-auth:16.0.2"
 
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
     //implementation project(':react-native-firebase')

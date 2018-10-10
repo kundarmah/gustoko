@@ -36,13 +36,12 @@ class HomeScreen extends Component {
   }
 
   componentDidMount () {
-    const that = this
-
-    firebase.auth().onAuthStateChanged(authUser => {
+    this.firebaseAuth = firebase.auth().onAuthStateChanged(authUser => {
       if(authUser){
         console.tron.log(authUser)
 
-        that.setState({user: authUser})
+        this.setState({user: authUser})
+
         firebase
         .firestore()
         .collection('users')
@@ -51,6 +50,10 @@ class HomeScreen extends Component {
       }
     });
   } 
+
+  componentWillUnmount () {
+    this.firebaseAuth()
+  }
 
   renderUserAvatar = () => {
     const { user } = this.state
@@ -79,27 +82,40 @@ class HomeScreen extends Component {
   renderMarker = () => {
     return (
       <Marker
-          coordinate={this.state.latLong}
+        coordinate={this.state.latLong}
       >
-          <View style={{
-              flexDirection: 'row', width: 100, height: 30,
-              backgroundColor: 'orange'
-          }}>
-              <Svg
-                  width={40} height={30}>
-                  <Image
-                      href={{uri: this.props.user.profile.picture}}
-                      width={40}
-                      height={30}
-                      onLoad={() => this.forceUpdate()}
-                  />
-              </Svg>
+        <View style={{
+          flexDirection: 'row',
+          width: 100,
+          height: 30,
+          backgroundColor: 'orange',
+          borderRadius: 20
+        }}>
+          <Svg
+            width={40}
+            height={30}
+          >
+            <Image
+              href={{uri: this.props.user.profile.picture}}
+              width={40}
+              height={30}
+              onLoad={() => this.forceUpdate()}
+            />
+          </Svg>
               <View
+                style={{
+                    flexDirection: 'column'
+              }}>
+                <Text
                   style={{
-                      flexDirection: 'column'
-
-                  }}
-              >
+                    marginLeft: 2,
+                    fontSize: 9,
+                    color: '#ffffff',
+                    fontWeight: 'bold',
+                    textDecorationLine: 'underline'
+                }}>
+                  {this.props.user.profile.given_name}
+                </Text>
                   <Text
                       style={{
                           marginLeft: 2,
@@ -108,16 +124,9 @@ class HomeScreen extends Component {
                           fontWeight: 'bold',
                           textDecorationLine: 'underline'
                       }}
-                  >{this.props.user.profile.given_name}</Text>
-                  <Text
-                      style={{
-                          marginLeft: 2,
-                          fontSize: 9,
-                          color: '#ffffff',
-                          fontWeight: 'bold',
-                          textDecorationLine: 'underline'
-                      }}
-                  >{this.props.user.profile.given_name}</Text>
+                  >
+                    {this.props.user.profile.given_name}
+                  </Text>
               </View>
           </View>
       </Marker>

@@ -8,6 +8,20 @@ import firebase from 'react-native-firebase'
 // Styles
 import styles from './Styles/RootContainerStyles'
 
+const defaultHandler = (ErrorUtils.getGlobalHandler && 
+ErrorUtils.getGlobalHandler()) || ErrorUtils._globalHandler
+
+ErrorUtils.setGlobalHandler((error, isFatal) => {
+  firebase.crashlytics().log(error.stack)
+  if (isFatal) {
+    firebase.crashlytics().crash()
+  } else {
+    firebase.crashlytics().recordError(0, "non-fatal")
+  }
+
+  defaultHandler.apply(this, arguments)
+})
+
 class RootContainer extends Component {
   componentDidMount () {
     // if redux persist is not active fire startup action
