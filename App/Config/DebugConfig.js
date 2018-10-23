@@ -2,8 +2,8 @@ export default {
   showDevScreens: __DEV__,
   useFixtures: false,
   ezLogin: false,
-  yellowBox: __DEV__,
+  yellowBox: false,
   reduxLogging: __DEV__,
-  includeExamples: __DEV__,
+  includeExamples: false,
   useReactotron: __DEV__
 }

@@ -105,7 +105,7 @@ android {
         multiDexEnabled true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
+        versionCode 4
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -169,10 +169,13 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-interactable')
     compile project(':react-native-svg')
     compile project(':lottie-react-native')
     compile project(':react-native-firebase')
-    compile project(':react-native-google-signin')
+    compile(project(':react-native-google-signin')){
+       exclude group: "com.google.android.gms"
+    }
     compile project(':react-native-linear-gradient')
     compile 'com.android.support:multidex:1.0.3'
     compile project(':react-native-code-push')
@@ -198,13 +201,15 @@ dependencies {
     }
     implementation 'com.google.android.gms:play-services-base:+'
     implementation 'com.google.android.gms:play-services-maps:+'
-
+    implementation 'com.google.android.gms:play-services-auth:+'
+    
     implementation "com.google.firebase:firebase-core:16.0.4"
     implementation "com.google.firebase:firebase-auth:16.0.4"
     implementation "com.google.firebase:firebase-database:16.0.3"
     implementation "com.google.firebase:firebase-messaging:17.3.2"
     implementation "com.google.firebase:firebase-firestore:17.1.1"
     implementation "com.google.firebase:firebase-perf:16.1.0"
+    implementation 'com.google.firebase:firebase-inappmessaging-display:17.0.2'
     //implementation "com.google.firebase:firebase-auth:16.0.2"
 
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'

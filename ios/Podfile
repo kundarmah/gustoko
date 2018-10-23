@@ -36,7 +36,7 @@ target 'GustoKo' do
   pod 'lottie-ios', :path => '../node_modules/lottie-ios'
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
-
+  pod 'Interactable', :path => '../node_modules/react-native-interactable'
   
   platform :ios, '9.0'
   target 'GustoKoTests' do

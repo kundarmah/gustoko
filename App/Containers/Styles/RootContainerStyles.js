@@ -20,5 +20,9 @@ export default StyleSheet.create({
     width: 200,
     height: 200,
     alignSelf: 'center'
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#ddd'
   }
 })

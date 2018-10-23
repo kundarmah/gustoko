@@ -3,9 +3,11 @@ package com.dm.gustokoph;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.wix.interactable.Interactable;
 import com.horcrux.svg.SvgPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.microsoft.codepush.react.CodePush;
@@ -59,6 +61,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new Interactable(),
             new SvgPackage(),
             new LottiePackage(),
             new RNFirebasePackage(),
@@ -74,6 +77,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
             new RNDeviceInfo(),
             new RNFirebaseAuthPackage(),
             new RNFirebaseFirestorePackage(),
+            new RNFirebaseCrashlyticsPackage(),
             new RNI18nPackage()
       );
     }
