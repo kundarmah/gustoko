@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, View, StyleSheet, TouchableOpacity, ImageBackground, Platform, Animated, Image as RNImage } from 'react-native'
+import { ScrollView, Text, View, StyleSheet, TouchableOpacity, ImageBackground, Platform, Animated, Image as RNImage, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import {Images, Metrics, Colors} from '../Themes'
 import MapView, { UrlTile, Marker } from 'react-native-maps'
@@ -13,6 +13,7 @@ import * as Animatable from 'react-native-animatable'
 import CategoryCheckbox from '../Components/CategoryCheckbox'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import LinearGradient from 'react-native-linear-gradient'
+import FakeMarker from '../Components/FakeMarker'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -30,8 +31,7 @@ const styles = StyleSheet.create({
  },
 });
 
-const snapFactor = (Metrics.screenHeight - 488 + (Platform.OS === 'android' ? 150 : 0)) / 21
-const initialSnapPosition = Metrics.hp('80%')
+const initialSnapPosition = Metrics.hp('82%') - (StatusBar.currentHeight)
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
 
 
@@ -124,20 +124,20 @@ class HomeScreen extends Component {
       >
         <View style={{
           flexDirection: 'row',
-          width: 50,
-          height: 50,
+          width: Metrics.hp('5%'),
+          height: Metrics.hp('5%'),
           backgroundColor: 'red',
-          borderRadius: 25,
+          borderRadius: Metrics.hp('5%')/2,
           overflow: 'hidden'
         }}>
           <Svg
-            width={50}
-            height={50}
+            width={Metrics.hp('5%')}
+            height={Metrics.hp('5%')}
           >
             <Image
               href={{uri: this.props.user.profile.picture}}
-              width={50}
-              height={50}
+              width={Metrics.hp('5%')}
+              height={Metrics.hp('5%')}
               onLoad={() => this.forceUpdate()}
             />
           </Svg>
@@ -172,15 +172,22 @@ class HomeScreen extends Component {
           easing="ease-out"
           duration={2000}
           useNativeDriver={true}
-          style={{backgroundColor: 'white', overflow: 'hidden', height: Metrics.hp('60%'), width: Metrics.wp('96%'), paddingTop: Metrics.hp('2.5%'), borderRadius: 10, alignItems: 'center', elevation: 3}}
+          style={{backgroundColor: 'white',
+                  overflow: 'hidden',
+                  height: Metrics.hp('60%'),
+                  width: Metrics.wp('96%'),
+                  paddingTop: Metrics.hp('2.5%'),
+                  borderRadius: 10,
+                  alignItems: 'center',
+                  elevation: 3}}
         >
           <AnimatableTouchableOpacity
           useNativeDriver={true}
             radius={40}
             style={{
-              height: 40,
+              height: Metrics.hp('6%'),
               width: Metrics.wp('80%'),
-              borderRadius: 20,
+              borderRadius: Metrics.hp('8%')/2,
               overflow: 'hidden',
               justifyContent: 'center',
               alignItems: 'center',
@@ -206,8 +213,22 @@ class HomeScreen extends Component {
               end={{x: 1.5, y: 0}}
               style={{height: '100%', width: '100%', position: 'absolute'}}
             />
-            <RegularText styles={{color: Colors.white}}>BOOK</RegularText>
+            <RegularText styles={{color: Colors.white,fontSize: Metrics.hp('2%')}}>BOOK</RegularText>
           </AnimatableTouchableOpacity>
+          <Animatable.View style={{
+            opacity: this._deltaY.interpolate({
+              inputRange: [0, initialSnapPosition],
+              outputRange: [1,0]
+            })
+          }}>
+            <RegularText styles={{
+              padding: Metrics.hp('1%'),
+              color: Colors.charcoal,
+              fontSize: Metrics.hp('3%')
+            }}>
+              Choose a Category
+            </RegularText> 
+          </Animatable.View>
           {this.renderCategories()}
           <TouchableOpacity
             style={{
@@ -243,7 +264,7 @@ class HomeScreen extends Component {
             alignItems: 'center'
           }}
         >
-          <Icon name="close" color={Colors.primaryColor} size={30} />
+          <Icon name="close" color={Colors.primaryColor} size={Metrics.hp('4%')} />
         </TouchableOpacity>
       </Interactable.View>
     )
@@ -255,7 +276,12 @@ class HomeScreen extends Component {
     console.tron.log('cat', this.state)
 
     return (
-      <View style={{flex: 1, flexWrap: 'wrap', paddingTop: 20, flexDirection: 'row', padding: 4, justifyContent: 'center'}}>
+      <View style={{flex: 1,
+                    flexWrap: 'wrap',
+                    paddingTop: Metrics.hp('4%'),
+                    flexDirection: 'row',
+                    padding: 4,
+                    justifyContent: 'center'}}>
         {
           categories.map(( category, i ) => {
             return (
@@ -287,6 +313,19 @@ class HomeScreen extends Component {
     longitudeDelta: 0.0421,
   });
 
+  renderFakeMarker = () => {
+    const { user } = this.props
+
+    return (
+      <FakeMarker
+        profileImage={user.profile.picture}
+      />
+    )
+  }
+
+  animateFakeMarker = () => {
+  }
+
   render () {
     const { user } = this.props
     return (
@@ -294,7 +333,7 @@ class HomeScreen extends Component {
         <View style={styles.container}>
           <MapView
             zoom={2}
-            showUserLocation
+            showsMyLocationButton={true}
             followUserLocation
             loadingEnabled
             showsCompass
@@ -309,6 +348,7 @@ class HomeScreen extends Component {
           >
             {this.renderMarker()}
           </MapView>
+          {this.renderFakeMarker()}
           {this.renderUserAvatar()}
           {this.renderLogout()}
           {this.renderSlidingPanel()}

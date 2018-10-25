@@ -78,6 +78,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - ReactNativePermissions (1.1.1):
+    - React
   - RNSVG (7.0.3):
     - React
   - yoga (0.57.1.React)
@@ -102,6 +104,7 @@ DEPENDENCIES:
   - React/RCTNetwork (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - ReactNativePermissions (from `../node_modules/react-native-permissions`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -132,6 +135,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/lottie-react-native"
   React:
     :path: "../node_modules/react-native"
+  ReactNativePermissions:
+    :path: "../node_modules/react-native-permissions"
   RNSVG:
     :path: "../node_modules/react-native-svg"
   yoga:
@@ -153,9 +158,10 @@ SPEC CHECKSUMS:
   lottie-ios: 9f24be3ecb13412223b6ac70d97437742b0e3de1
   lottie-react-native: db4bd75685428c4ad0ec2f913145abff3d38b640
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  ReactNativePermissions: 9f2d9c45c98800795e6c2ed330e25d11a66a8169
   RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: be325611bc8ab832e5ab9b673d336d20fce5b1d3
+PODFILE CHECKSUM: 612b17fac11b684b57aef92de6a12118c6f686de
 
 COCOAPODS: 1.5.3

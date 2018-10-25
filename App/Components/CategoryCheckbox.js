@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { CheckBox } from 'react-native-elements'
-import { Colors } from '../Themes'
+import { Colors, Metrics } from '../Themes'
 
 CategoryCheckbox.propTypes = {
     title: PropTypes.string.isRequired,
@@ -30,7 +30,7 @@ export default function CategoryCheckbox(props) {
 
 const styles = StyleSheet.create({
     checkboxText: {
-        fontSize: 14,
+        fontSize: Metrics.hp('2%'),
         fontWeight: 'normal'
     },
     checkboxContainer: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginLeft: 0,
         marginRight: 10,
-        height: 35,
+        height: Metrics.hp('5%'),
         justifyContent: 'center'
     }
 });
