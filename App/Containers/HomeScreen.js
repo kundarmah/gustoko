@@ -135,7 +135,7 @@ class HomeScreen extends Component {
             height={Metrics.hp('5%')}
           >
             <Image
-              href={{uri: this.props.user.profile.picture}}
+              href={{uri: this.props.user.photoURL}}
               width={Metrics.hp('5%')}
               height={Metrics.hp('5%')}
               onLoad={() => this.forceUpdate()}
@@ -318,7 +318,7 @@ class HomeScreen extends Component {
 
     return (
       <FakeMarker
-        profileImage={user.profile.picture}
+        profileImage={user.photoURL}
       />
     )
   }

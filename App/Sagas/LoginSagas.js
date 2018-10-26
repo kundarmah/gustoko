@@ -35,7 +35,9 @@ export function * getLogin (api, action) {
     if (response) {
       // You might need to change the response here - do this with a 'transform',
       // located in ../Transforms/. Otherwise, just pass the data back from the api.
-      yield put(LoginActions.loginSuccess(response))
+      console.tron.log('RESP: ',response)
+      const {email, displayName, photoURL, phoneNumber} = response.user
+      yield put(LoginActions.loginSuccess({email, displayName, photoURL: (photoURL ? photoURL : response.additionalUserInfo.profile.picture.data.url), phoneNumber}))
     } else {
       yield put(LoginActions.loginFailure(response))
     }
