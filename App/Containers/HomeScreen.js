@@ -11,9 +11,11 @@ import { ButtonGradient } from '../Components/Buttons'
 import { RegularText } from '../Components/TextWithFont'
 import * as Animatable from 'react-native-animatable'
 import CategoryCheckbox from '../Components/CategoryCheckbox'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import MIcon from 'react-native-vector-icons/MaterialIcons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import LinearGradient from 'react-native-linear-gradient'
 import FakeMarker from '../Components/FakeMarker'
+
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
@@ -31,9 +33,8 @@ const styles = StyleSheet.create({
  },
 });
 
-const initialSnapPosition = Metrics.hp('82%') - (StatusBar.currentHeight)
+const initialSnapPosition = Metrics.hp('85%') - (StatusBar.currentHeight)
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(TouchableOpacity);
-
 
 class HomeScreen extends Component {
   constructor (props) {
@@ -59,29 +60,32 @@ class HomeScreen extends Component {
   }
 
   componentDidMount () {
+    this._isMount = true
+
     this.firebaseAuth = firebase.auth().onAuthStateChanged(authUser => {
       if(authUser){
         console.tron.log(authUser)
-
-        this.setState({user: authUser})
+        if(this._isMount)
+          this.setState({user: authUser})
 
         firebase
         .firestore()
         .collection('users')
         .doc(authUser.uid)
-        .set()
+        .set(this.props.user)
       }
     });
 
-    navigator.geolocation.getCurrentPosition(
+    this.navigatorListener = navigator.geolocation.getCurrentPosition(
       (position) => {
-        this.setState({
-          latLong: {
-            ...this.state.latLong,
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          }
-        })
+        if(this._isMount)
+          this.setState({
+            latLong: {
+              ...this.state.latLong,
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            }
+          })
       },
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
@@ -89,7 +93,10 @@ class HomeScreen extends Component {
   } 
 
   componentWillUnmount () {
+    this._isMount = false
+
     this.firebaseAuth()
+    navigator.geolocation.clearWatch(this.navigatorListener)
     this._deltaY = undefined
   }
 
@@ -105,11 +112,34 @@ class HomeScreen extends Component {
         <Text>{user.displayName}</Text>
       </View>
     )
+  }
+
+  renderType = () => {
+    return (
+      <View style={{flex: 1}}>
+        <RegularText styles={{textAlign: 'center', fontSize: Metrics.hp('3%'), padding: Metrics.hp('1%')}}>Choose Type of Agent</RegularText>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity style={{margin: 4, height: Metrics.hp('10%'), width: Metrics.wp('20%'), borderRadius: 4, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5, borderColor: Colors.secondaryColor, backgroundColor: Colors.white}}>
+            <Icon name="random" size={Metrics.hp('3%')} color={Colors.primaryColor} />
+            <RegularText styles={{color: Colors.secondaryColor, fontSize: Metrics.hp('1.64%')}}>Any</RegularText>
+          </TouchableOpacity>
+          <TouchableOpacity style={{margin: 4, height: Metrics.hp('10%'), width: Metrics.wp('20%'), borderRadius: 4, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5, borderColor: Colors.secondaryColor, backgroundColor: Colors.white}}>
+            <Icon name="male" size={Metrics.hp('3%')} color={Colors.primaryColor} />
+            <RegularText styles={{color: Colors.secondaryColor, fontSize: Metrics.hp('1.64%')}}>Walking</RegularText>
+          </TouchableOpacity>
+          <TouchableOpacity style={{margin: 4, height: Metrics.hp('10%'), width: Metrics.wp('20%'), borderRadius: 4, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5, borderColor: Colors.secondaryColor, backgroundColor: Colors.white}}>
+            <Icon name="motorcycle" size={Metrics.hp('3%')} color={Colors.primaryColor} />
+            <RegularText styles={{color: Colors.secondaryColor, fontSize: Metrics.hp('1.64%')}}>Moto</RegularText>
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
   } 
 
   renderLogout = () => {
     return (
       <TouchableOpacity
+        style={{position: 'absolute'}}
         onPress={() => this.props.logout()}
       >
         <Text>LOGOUT</Text>
@@ -146,27 +176,62 @@ class HomeScreen extends Component {
     )
   }
 
+  renderPrice = () => {
+    return (
+      <Animatable.View style={{
+        flex: 0.5,
+        width: '100%',
+        alignItems: 'center',
+        opacity: this._deltaY.interpolate({
+            inputRange: [0, initialSnapPosition],
+            outputRange: [1,0]
+          })
+        }} pointerEvents='none'>
+        <View style={{
+          position: 'absolute',
+          width: Metrics.wp('200%'),
+          height: Metrics.wp('200%'),
+          borderRadius: Metrics.wp('200%'),
+          top: - Metrics.wp('180%'),
+          overflow: 'hidden'}}>
+          <LinearGradient
+            colors={[Colors.primaryColor, Colors.paleColor]}
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            style={{height: '100%', width: '100%', position: 'absolute'}}
+          />
+        </View>
+        <View style={{
+          backgroundColor: Colors.white,
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          flexDirection: 'row',
+          bottom: 0,
+          borderWidth: 1,
+          borderColor: Colors.paleColor,
+          borderRadius: Metrics.hp('5%'),
+          height: Metrics.hp('5%'),
+          width: Metrics.wp('40%')}}>
+          <RegularText styles={{color: Colors.primaryColor, fontWeight: 'bold', fontSize: Metrics.hp('2.5%')}}>₱50 </RegularText>
+          <RegularText styles={{color: Colors.secondaryColor, fontSize: Metrics.hp('2%')}}>per 30 mins</RegularText>
+        </View>
+      </Animatable.View>
+    )
+  }
+
   renderSlidingPanel = () => {
     return (
       <Interactable.View
         verticalOnly={true}
-        snapPoints={[{y: Metrics.screenHeight*0.15}, {y: initialSnapPosition}]}
+        snapPoints={[{y: Metrics.hp('2%')},{y: initialSnapPosition}]}
         snapTo={[{y: 0}, {y: 150}]}
-        boundaries={{top: Metrics.hp('10%')}}
         initialPosition={{y: initialSnapPosition}}
         animatedValueY={this._deltaY}
         animatedNativeDriver={true}
         style={{alignItems: 'center'}}
         ref={'book'}
       >
-{/*        <View style={{zIndex: 2, position: 'absolute', top: -(Metrics.hp('5%')),height: Metrics.hp('10%'), width: Metrics.hp('10%'), borderWidth: 1}}>
-          <RNImage 
-            source={Images.gustokoLogo}
-            resizeMode="contain"
-            width={40}
-            height={40}
-          />
-        </View>*/}
         <Animatable.View
           animation="bounceInUp"
           easing="ease-out"
@@ -174,23 +239,33 @@ class HomeScreen extends Component {
           useNativeDriver={true}
           style={{backgroundColor: 'white',
                   overflow: 'hidden',
-                  height: Metrics.hp('60%'),
+                  height: Metrics.hp('75%'),
                   width: Metrics.wp('96%'),
-                  paddingTop: Metrics.hp('2.5%'),
                   borderRadius: 10,
                   alignItems: 'center',
                   elevation: 3}}
         >
+         {/* <Animatable.View style={{
+            opacity: this._deltaY.interpolate({
+              inputRange: [0, initialSnapPosition],
+              outputRange: [1,0]
+            })
+          }}>
+              Choose a Category
+            </RegularText>
+          </Animatable.View>*/}
           <AnimatableTouchableOpacity
-          useNativeDriver={true}
+            useNativeDriver={true}
             radius={40}
             style={{
               height: Metrics.hp('6%'),
               width: Metrics.wp('80%'),
               borderRadius: Metrics.hp('8%')/2,
+              position: 'absolute',
               overflow: 'hidden',
               justifyContent: 'center',
               alignItems: 'center',
+              top: Metrics.hp('2.5%'),
               elevation: 2,
               transform: [{
                 scaleX: this._deltaY.interpolate({
@@ -205,8 +280,7 @@ class HomeScreen extends Component {
                 })
               }]
             }}
-            onPress={() => this.refs['book'].snapTo({index: 0})}
-          >
+            onPress={() => this.refs['book'].snapTo({index: 0})}>
             <LinearGradient
               colors={[Colors.primaryColor, Colors.paleColor]}
               start={{x: 0, y: 0}}
@@ -215,21 +289,9 @@ class HomeScreen extends Component {
             />
             <RegularText styles={{color: Colors.white,fontSize: Metrics.hp('2%')}}>BOOK</RegularText>
           </AnimatableTouchableOpacity>
-          <Animatable.View style={{
-            opacity: this._deltaY.interpolate({
-              inputRange: [0, initialSnapPosition],
-              outputRange: [1,0]
-            })
-          }}>
-            <RegularText styles={{
-              padding: Metrics.hp('1%'),
-              color: Colors.charcoal,
-              fontSize: Metrics.hp('3%')
-            }}>
-              Choose a Category
-            </RegularText> 
-          </Animatable.View>
+          {this.renderPrice()}
           {this.renderCategories()}
+          {this.renderType()}
           <TouchableOpacity
             style={{
               height: Metrics.hp('10%'),
@@ -264,7 +326,7 @@ class HomeScreen extends Component {
             alignItems: 'center'
           }}
         >
-          <Icon name="close" color={Colors.primaryColor} size={Metrics.hp('4%')} />
+          <MIcon name="close" color={Colors.primaryColor} size={Metrics.hp('4%')} />
         </TouchableOpacity>
       </Interactable.View>
     )
@@ -276,24 +338,35 @@ class HomeScreen extends Component {
     console.tron.log('cat', this.state)
 
     return (
-      <View style={{flex: 1,
-                    flexWrap: 'wrap',
-                    paddingTop: Metrics.hp('4%'),
-                    flexDirection: 'row',
-                    padding: 4,
-                    justifyContent: 'center'}}>
-        {
-          categories.map(( category, i ) => {
-            return (
-              <CategoryCheckbox
-                key={i}
-                title={category.name}
-                checked={category.isChecked}
-                onPress={() => this.handleCategoryChecked(i)}
-              />
-            )
-          })
-        }
+      <View style={{flex: 1}}>
+        <RegularText styles={{
+          padding: Metrics.hp('1%'),
+          color: Colors.charcoal,
+          fontSize: Metrics.hp('3%'),
+          textAlign: 'center'
+        }}>
+          Choose Category
+        </RegularText>
+        <View style={{
+          flex: 1,
+          flexWrap: 'wrap',
+          paddingTop: Metrics.hp('4%'),
+          flexDirection: 'row',
+          padding: 4,
+          justifyContent: 'center'}}>            
+          {
+            categories.map(( category, i ) => {
+              return (
+                <CategoryCheckbox
+                  key={i}
+                  title={category.name}
+                  checked={category.isChecked}
+                  onPress={() => this.handleCategoryChecked(i)}
+                />
+              )
+            })
+          }
+        </View>
       </View>
     )
   }
@@ -303,7 +376,8 @@ class HomeScreen extends Component {
     
     newCategories[index].isChecked = !newCategories[index].isChecked;
 
-    this.setState({ categories: newCategories });
+    if(this._isMount)
+      this.setState({ categories: newCategories });
   }
 
   getMapRegion = () => ({

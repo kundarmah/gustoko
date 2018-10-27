@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, View } from 'react-native'
+import { ScrollView, Text, KeyboardAvoidingView, View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -21,10 +21,15 @@ class LoadingScreen extends Component {
 
   render () {
     return (
-      <View styles={{borderWidth: 1, borderColor: 'red', justifyContent: 'center', alignItems: 'center'}}>
-        <Text styles={{textAlign: 'middle'}}>Please wait...</Text>
-        <LinearGradient style={{flex: 1}} colors={[Colors.primaryColor, Colors.paleColor]} start={{x: 0, y: 0}} end={{x: 1.5, y: 0}} />
-      </View>
+      <View style={{flex: 1, height: Metrics.hp('100%'), justifyContent: 'center', alignItems: 'center'}}>
+        <LinearGradient
+          colors={[Colors.primaryColor, Colors.paleColor]}
+          start={{x: 0, y: 0}}
+          end={{x: 1.5, y: 0}}
+          style={{height: Metrics.hp('100%'), width: Metrics.wp('100%'), position: 'absolute', ...StyleSheet.absoluteFillObject}}
+        />
+        <Text style={{fontSize: Metrics.hp('10%'), textAlign: 'middle', fontFamily: 'Qwigley', color: Colors.white, textAlign: 'center', elevation: 1}}>GustoKo</Text>
+       </View>
     )
   }
 }

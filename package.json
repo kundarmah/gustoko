@@ -27,6 +27,7 @@
     "git-hook": "npm run lint -s && npm run test -s"
   },
   "dependencies": {
+    "@okgrow/react-native-copilot": "^2.4.1",
     "apisauce": "^0.14.2",
     "appcenter": "^1.8.1",
     "appcenter-analytics": "^1.8.1",
@@ -49,6 +50,7 @@
     "react-native-elements": "^1.0.0-beta6",
     "react-native-fbsdk": "^0.8.0",
     "react-native-firebase": "^5.0.0-rc4",
+    "react-native-gifted-chat": "^0.4.3",
     "react-native-google-signin": "^1.0.0-rc6",
     "react-native-i18n": "^2.0.15",
     "react-native-interactable": "^0.1.10",

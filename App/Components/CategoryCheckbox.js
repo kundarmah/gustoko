@@ -31,12 +31,13 @@ export default function CategoryCheckbox(props) {
 const styles = StyleSheet.create({
     checkboxText: {
         fontSize: Metrics.hp('2%'),
-        fontWeight: 'normal'
+        fontWeight: '100',
+        fontFamily: 'Muli'
     },
     checkboxContainer: {
         flex: 0,
-        borderWidth: 1,
-        borderColor: Colors.primaryColor,
+        borderWidth: 0.5,
+        borderColor: Colors.secondaryColor,
         borderRadius: 20,
         marginLeft: 0,
         marginRight: 10,
