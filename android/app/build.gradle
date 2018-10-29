@@ -110,6 +110,9 @@ android {
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
+        dexOptions {
+            javaMaxHeapSize "4g"
+        }
     }
 
     signingConfigs {

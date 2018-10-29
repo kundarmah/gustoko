@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, View, StyleSheet } from 'react-native'
+import { ScrollView, Text, KeyboardAvoidingView, View, StyleSheet, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -22,6 +22,7 @@ class LoadingScreen extends Component {
   render () {
     return (
       <View style={{flex: 1, height: Metrics.hp('100%'), justifyContent: 'center', alignItems: 'center'}}>
+        <StatusBar hidden />
         <LinearGradient
           colors={[Colors.primaryColor, Colors.paleColor]}
           start={{x: 0, y: 0}}

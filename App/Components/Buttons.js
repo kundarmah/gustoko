@@ -3,6 +3,8 @@ import React from 'react'
 import { TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { Colors, Metrics } from '../Themes'
+import Icon from 'react-native-vector-icons/FontAwesome'
+import { RegularText } from '../Components/TextWithFont'
 
 class ButtonGradient extends React.Component {
   static propTypes = {
@@ -33,4 +35,16 @@ class ButtonGradient extends React.Component {
   }
 }
 
-export { ButtonGradient }
+class ButtonInvert extends React.Component {
+  render () {
+    const {iconName, isSelected} = this.props
+    return (
+        <TouchableOpacity { ...this.props } style={{margin: 4, height: Metrics.hp('10%'), width: Metrics.wp('20%'), borderRadius: 4, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5, borderColor: Colors.secondaryColor, backgroundColor: isSelected ? Colors.primaryColor : Colors.white}}>
+          <Icon name={iconName ? iconName : "random"} size={Metrics.hp('3%')} color={isSelected ? Colors.white : Colors.primaryColor} />
+          <RegularText styles={{color: isSelected ? Colors.white : Colors.secondaryColor, fontSize: Metrics.hp('1.64%')}}>{this.props.children}</RegularText>
+        </TouchableOpacity>
+    )
+  }
+}
+
+export { ButtonGradient, ButtonInvert }
