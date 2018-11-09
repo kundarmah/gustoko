@@ -84,6 +84,7 @@ class HomeScreen extends Component {
 
     this._isMount = true
 
+
     this.firebaseAuth = firebase.auth().onAuthStateChanged(authUser => {
       if(authUser){
         console.tron.log(authUser)
@@ -95,10 +96,20 @@ class HomeScreen extends Component {
         .collection('users')
         .doc(authUser.uid)
         .set(this.props.user)
-
+        
+        //Check all the statuses
         this.checkActiveTask()
+        this.checkIfPartner()
       }
     });
+
+    // this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(fcmToken => {
+    //   firebase
+    //   .firestore()
+    //   .collection('users')
+    //   .doc(this.props.user.uid)
+    //   .set({fcmToken: fcmToken},{merge: true})
+    // });
 
     this.navigatorListener = navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -119,6 +130,18 @@ class HomeScreen extends Component {
 
     if(this.props.isRehydrated){
       try {
+
+        const fcmToken = await firebase.messaging().getToken();
+        if (fcmToken) {
+            // user has a device token
+          firebase
+          .firestore()
+          .collection('users')
+          .doc(this.props.user.uid)
+          .set({fcmToken: fcmToken},{merge: true})
+        } else {
+            // user doesn't have a device token yet
+        }
         // Create a Firebase reference where GeoFirestore will store its information
         const collectionRef = firebase.firestore().collection('locations')
 
@@ -146,11 +169,29 @@ class HomeScreen extends Component {
   //   }
   // } 
 
+  checkIfPartner = () => {
+        firebase
+        .firestore()
+        .collection('partners')
+        .doc(this.props.user.uid)
+        .get().then(function(doc) {
+            if (doc.exists) {
+                console.tron.log("Document data:", doc.data().active);
+            } else {
+                // doc.data() will be undefined in this case
+                console.tron.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.tron.log("Error getting document:", error);
+        });
+
+  }
+
   componentWillUnmount () {
     this._isMount = false
 
     this.firebaseAuth()
-
+    // this.onTokenRefreshListener()
     navigator.geolocation.clearWatch(this.navigatorListener)
 
     this._deltaY = undefined
@@ -610,12 +651,12 @@ class HomeScreen extends Component {
   renderRegister = () => {
     return (
         <View style={{height: '100%', width: '100%', position: 'absolute', justifyContent: 'center', alignItems: 'center'}}>
-          <Animated.View
+          <View
             animation="flipInX"
             duration={3000}
             useNativeDriver={true} 
             style={{height: '100%', width: '100%', position: 'absolute', backgroundColor: Colors.charcoal, opacity: 0.5}}>
-          </Animated.View>
+          </View>
           <View style={{position: 'absolute', backgroundColor: Colors.white, width: '90%', height: '60%', borderRadius: 5, elevation: 3, justifyContent: 'center', alignItems: 'center'}}>
             <LottieView
               source={require('../../Images/Lottie/empty_box.json')}

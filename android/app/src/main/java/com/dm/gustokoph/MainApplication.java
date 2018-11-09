@@ -3,6 +3,8 @@ package com.dm.gustokoph;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.imagepicker.ImagePickerPackage;
 import com.wix.interactable.Interactable;
 import com.horcrux.svg.SvgPackage;
 import com.airbnb.android.react.lottie.LottiePackage;
@@ -29,6 +31,9 @@ import com.facebook.appevents.AppEventsLogger;
 
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
+import io.invertase.firebase.storage.RNFirebaseStoragePackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+
 
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 
@@ -61,6 +66,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFetchBlobPackage(),
+            new ImagePickerPackage(),
             new Interactable(),
             new SvgPackage(),
             new LottiePackage(),
@@ -78,6 +85,8 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
             new RNFirebaseAuthPackage(),
             new RNFirebaseFirestorePackage(),
             new RNFirebaseCrashlyticsPackage(),
+            new RNFirebaseStoragePackage(),
+            new RNFirebaseMessagingPackage(),
             new RNI18nPackage()
       );
     }

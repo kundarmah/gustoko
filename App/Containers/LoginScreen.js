@@ -9,7 +9,8 @@ import {
   Image,
   Keyboard,
   LayoutAnimation,
-  ImageBackground
+  ImageBackground,
+  Alert
 } from 'react-native'
 import { connect } from 'react-redux'
 import { LoginManager, AccessToken } from 'react-native-fbsdk'
@@ -21,6 +22,7 @@ import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { GoogleSignin, statusCodes } from 'react-native-google-signin'
 import Secrets from 'react-native-config'
+import { CheckBox } from 'react-native-elements'
 
 class LoginScreen extends React.Component {
   static propTypes = {
@@ -40,7 +42,8 @@ class LoginScreen extends React.Component {
       password: 'password',
       visibleHeight: Metrics.screenHeight,
       topLogo: { width: Metrics.screenWidth },
-      loginButtonDisabled : false
+      loginButtonDisabled : false,
+      isChecked: false
     }
     this.isAttempting = false
 
@@ -95,7 +98,7 @@ class LoginScreen extends React.Component {
     const { username, password } = this.state
     this.isAttempting = true
     // attempt a login - a saga is listening to pick it up from here.
-    this.props.attemptLogin(username, password)
+      this.props.attemptLogin(username, password)
   }
 
   handleChangeUsername = (text) => {
@@ -108,47 +111,68 @@ class LoginScreen extends React.Component {
 
   handleFBLogin = async () => {
     let that = this
-    this.setState({ loginButtonDisabled : true })
-    try {
-      const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
 
-      if (result.isCancelled) {
-        console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
-        this.setState({ loginButtonDisabled : false })
-      } else {
-        // get the access token
-        const data = await AccessToken.getCurrentAccessToken();
-        this.setState({ loginButtonDisabled : false })
-        // create a new firebase credential with the token
-        this.props.attemptLogin(null, data.accessToken)
-      }
-    } catch (e) {
-      console.error(e);
-      this.setState({ loginButtonDisabled : false })
+    if(this.state.isChecked){
+        this.setState({ loginButtonDisabled : true })
+        try {
+          const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+    
+          if (result.isCancelled) {
+            console.tron.log('User Cancelled Login'); // Handle this however fits the flow of your app
+            this.setState({ loginButtonDisabled : false })
+          } else {
+            // get the access token
+            const data = await AccessToken.getCurrentAccessToken();
+            this.setState({ loginButtonDisabled : false })
+            // create a new firebase credential with the token
+            this.props.attemptLogin(null, data.accessToken)
+          }
+        } catch (e) {
+          console.error(e);
+          this.setState({ loginButtonDisabled : false })
+        }
+    } else {
+      Alert.alert(
+        'Accept Terms and Conditions',
+        'Please PRESS the checkbox BELOW to continue.',
+        [
+          {text: 'OK', onPress: () => console.log('Ask me later pressed')}
+        ]
+      )
     }
   }
 
 // Calling this function will open Google for login.
   handleGoogleLogin = async () => {
-    this.setState({ loginButtonDisabled : true })
-    try {
-      await GoogleSignin.configure({
-        webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
-      });
-      const data = await GoogleSignin.signIn();
-      this.setState({ loginButtonDisabled : false })
-      this.props.attemptLogin(data.idToken, data.accessToken)
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-        this.setState({ loginButtonDisabled : false })
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (f.e. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-      } else {
-        // some other error happened
-      }
+    if(this.state.isChecked){
+        this.setState({ loginButtonDisabled : true })
+        try {
+          await GoogleSignin.configure({
+            webClientId: '1066043128404-q6tokcaefa3me765bbkofor9fdca197c.apps.googleusercontent.com'
+          });
+          const data = await GoogleSignin.signIn();
+          this.setState({ loginButtonDisabled : false })
+          this.props.attemptLogin(data.idToken, data.accessToken)
+        } catch (error) {
+          if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+            // user cancelled the login flow
+            this.setState({ loginButtonDisabled : false })
+          } else if (error.code === statusCodes.IN_PROGRESS) {
+            // operation (f.e. sign in) is in progress already
+          } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+            // play services not available or outdated
+          } else {
+            // some other error happened
+          }
+        }
+    } else {
+      Alert.alert(
+        'Accept Terms and Conditions',
+        'Please PRESS the checkbox BELOW to continue.',
+        [
+          {text: 'OK', onPress: () => console.log('Ask me later pressed')}
+        ]
+      )
     }
   }
 
@@ -241,9 +265,33 @@ class LoginScreen extends React.Component {
     )
   }
 
+  renderToC = () => {
+    return (
+      <View style={{flexDirection: 'row', padding: 12, flex: 1, alignItems: 'baseline', flexWrap: 'wrap', width: Metrics.wp('100%'), alignItems: 'center', justifyContent: 'center', position: 'relative', top: Metrics.hp('20%')}}>
+        <CheckBox
+          checked={this.state.isChecked}
+          checkedColor={Colors.white}
+          uncheckedColor={Colors.white}
+          containerStyle={{padding: 4, margin: 0, marginLeft: 0, marginRight: 0}}
+          onPress={ ()=> this.setState({isChecked: !this.state.isChecked} )}
+        />
+        <RegularText styles={{color: Colors.white, elevation: 2, fontSize: 12}}>by checking this box, you agree to our </RegularText>
+        <Text style={{color: '#7ec0ee'}}
+          onPress={() => LinkingIOS.openURL('http://google.com')}>
+           Terms and Conditions 
+        </Text>
+        <RegularText styles={{color: Colors.white, elevation: 2, fontSize: 12}}> and that you have read our </RegularText>
+        <Text style={{color: '#7ec0ee'}}
+          onPress={() => LinkingIOS.openURL('http://google.com')}>
+           Data Use Policy.
+        </Text>
+      </View>
+    )
+  }
+
   render () {
     return (
-      <ScrollView contentContainerStyle={{justifyContent: 'center', flex: 1}} style={[styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
+      <ScrollView contentContainerStyle={{justifyContent: 'center', flex: 1, width: '100%'}} style={[styles.container, {height: this.state.visibleHeight}]} keyboardShouldPersistTaps='always'>
         <ImageBackground 
           source={Images.backgroundLogin}
           style={{flex: 1}}
@@ -260,6 +308,7 @@ class LoginScreen extends React.Component {
             </RegularText>
           </View>
           {this.renderSocialLogin()}
+          {this.renderToC()}
         </ImageBackground>
       </ScrollView>
     )

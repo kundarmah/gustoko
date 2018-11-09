@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation'
 import HomeScreen from '../Containers/Customer/HomeScreen'
 import ChatScreen from '../Containers/Customer/ChatScreen'
 import RegisterScreen from '../Containers/Agent/RegisterScreen'
+import FinalRegisterScreen from '../Containers/Agent/FinalRegisterScreen'
 
 import React, { Component } from 'react'
 import { Image, Text } from 'react-native'
@@ -38,6 +39,14 @@ export default StackNavigator({
     headerMode: 'screen',
     navigationOptions: ({ navigation }) => ({
       headerMode: 'float',
+      headerTitle: <LogoTitle />,
+    }),
+  },
+  FinalRegisterScreen: { 
+    screen: FinalRegisterScreen,
+    headerMode: 'screen',
+    navigationOptions: ({ navigation }) => ({
+      headerMode: 'screen',
       headerTitle: <LogoTitle />,
     }),
   }
