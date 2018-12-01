@@ -10,7 +10,8 @@ import {
   Keyboard,
   LayoutAnimation,
   ImageBackground,
-  Alert
+  Alert,
+  Linking
 } from 'react-native'
 import { connect } from 'react-redux'
 import { LoginManager, AccessToken } from 'react-native-fbsdk'
@@ -275,14 +276,34 @@ class LoginScreen extends React.Component {
           containerStyle={{padding: 4, margin: 0, marginLeft: 0, marginRight: 0}}
           onPress={ ()=> this.setState({isChecked: !this.state.isChecked} )}
         />
-        <RegularText styles={{color: Colors.white, elevation: 2, fontSize: 12}}>by checking this box, you agree to our </RegularText>
-        <Text style={{color: '#7ec0ee'}}
-          onPress={() => LinkingIOS.openURL('http://google.com')}>
+        <RegularText styles={{color: Colors.white, elevation: 2, fontSize: 12}}>by checking this box, you AGREE to our </RegularText>
+        <Text style={{fontSize: 12, color: '#7ec0ee'}}
+          onPress={() => {
+            const url = 'https://github.com/kundarmah/gustokoph/blob/master/TaC.md'
+
+            Linking.canOpenURL(url).then(supported => {
+              if (!supported) {
+                console.log('Can\'t handle url: ' + url);
+              } else {
+                return Linking.openURL(url);
+              }
+              }).catch(err => console.error('An error occurred', err));
+          }}>
            Terms and Conditions 
         </Text>
         <RegularText styles={{color: Colors.white, elevation: 2, fontSize: 12}}> and that you have read our </RegularText>
-        <Text style={{color: '#7ec0ee'}}
-          onPress={() => LinkingIOS.openURL('http://google.com')}>
+        <Text style={{fontSize: 12, color: '#7ec0ee'}}
+          onPress={() => {
+            const url = 'https://github.com/kundarmah/gustokoph/blob/master/README.md'
+
+            Linking.canOpenURL(url).then(supported => {
+              if (!supported) {
+                console.log('Can\'t handle url: ' + url);
+              } else {
+                return Linking.openURL(url);
+              }
+              }).catch(err => console.error('An error occurred', err));
+          }}>
            Data Use Policy.
         </Text>
       </View>

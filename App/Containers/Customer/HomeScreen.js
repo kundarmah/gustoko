@@ -70,16 +70,26 @@ class HomeScreen extends Component {
       hasActiveTask: false,
       activeTaskId: '',
       isFetching: true,
+      isPending: false,
       showRegister: false
     }
 
     this._deltaY = new Animated.Value(initialSnapPosition);
   }
 
+  onRegionChange(region, lastLat, lastLong) {
+    this.setState({
+      mapRegion: region,
+      // If there are no new values set the current ones
+      lastLat: lastLat || this.state.latLong.latitude,
+      lastLong: lastLong || this.state.latLong.longitude
+    });
+  }
+
   async componentDidMount () {
 
     InteractionManager.runAfterInteractions(() => {
-      this.setState({showRegister: true})
+      // this.setState({showRegister: true})
     })
 
     this._isMount = true
@@ -103,17 +113,16 @@ class HomeScreen extends Component {
       }
     });
 
-    // this.onTokenRefreshListener = firebase.messaging().onTokenRefresh(fcmToken => {
-    //   firebase
-    //   .firestore()
-    //   .collection('users')
-    //   .doc(this.props.user.uid)
-    //   .set({fcmToken: fcmToken},{merge: true})
-    // });
-
     this.navigatorListener = navigator.geolocation.getCurrentPosition(
       (position) => {
-        if(this._isMount)
+        if(this._isMount){
+          let region = {
+            latitude:       position.coords.latitude,
+            longitude:      position.coords.longitude,
+            latitudeDelta:  0.00922*1.5,
+            longitudeDelta: 0.00421*1.5
+          }
+          this.onRegionChange(region, region.latitude, region.longitude);
           this.setState({
             latLong: {
               ...this.state.latLong,
@@ -121,8 +130,7 @@ class HomeScreen extends Component {
               longitude: position.coords.longitude,
             }
           })
-
-
+        }
       },
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
@@ -130,7 +138,6 @@ class HomeScreen extends Component {
 
     if(this.props.isRehydrated){
       try {
-
         const fcmToken = await firebase.messaging().getToken();
         if (fcmToken) {
             // user has a device token
@@ -147,11 +154,12 @@ class HomeScreen extends Component {
 
         // Create a GeoFirestore index
         const geoFirestore = new GeoFirestore(collectionRef)
-        let docRef = await collectionRef.add({
-              location: new firebase.firestore.GeoPoint(this.state.latLong.latitude, this.state.latLong.longitude),
-              uid: this.props.user.uid
-          })
-          console.tron.log('DOC REF: ',docRef.id)
+        geoFirestore.set(this.props.user.uid, { coordinates: new firebase.firestore.GeoPoint(this.state.latLong.latitude, this.state.latLong.longitude)}).then((docRef) => {
+          // console.log(docRef.id); // ID of newly added document
+        }, (error) => {
+          console.log('Error: ' + error);
+        });
+          // console.tron.log('DOC REF: ',docRef.id)
           // await geoFirestore.set(docRef.id, [this.state.latLong.latitude, this.state.latLong.longitude]);
       } catch (err) {
           console.tron.log("Error GeoFire: ", err)
@@ -170,20 +178,20 @@ class HomeScreen extends Component {
   // } 
 
   checkIfPartner = () => {
-        firebase
-        .firestore()
-        .collection('partners')
-        .doc(this.props.user.uid)
-        .get().then(function(doc) {
-            if (doc.exists) {
-                console.tron.log("Document data:", doc.data().active);
-            } else {
-                // doc.data() will be undefined in this case
-                console.tron.log("No such document!");
-            }
-        }).catch(function(error) {
-            console.tron.log("Error getting document:", error);
-        });
+        // firebase
+        // .firestore()
+        // .collection('partners')
+        // .doc(this.props.user.uid)
+        // .get().then(function(doc) {
+        //     if (doc.exists) {
+        //         console.tron.log("Document data:", doc.data().active);
+        //     } else {
+        //         // doc.data() will be undefined in this case
+        //         console.tron.log("No such document!");
+        //     }
+        // }).catch(function(error) {
+        //     console.tron.log("Error getting document:", error);
+        // });
 
   }
 
@@ -205,9 +213,17 @@ class HomeScreen extends Component {
     }
 
     return (
-      <View>
+      <Animatable.View style={{
+        // opacity: this._deltaY.interpolate({
+        //   inputRange: [0, initialSnapPosition],
+        //   outputRange: [1,0]
+        // })
+      }}>
         <Text>{user.displayName}</Text>
-      </View>
+        <Image
+          style={{height: Metrics.hp('10%'), width: Metrics.hp('10%')}} 
+          source={{uri: user.photoURL}} />
+      </Animatable.View>
     )
   }
 
@@ -222,7 +238,7 @@ class HomeScreen extends Component {
             easing="ease-out"
             duration={200}
           >
-            <RegularText styles={{textAlign: 'center', fontSize: Metrics.hp('3%'), padding: Metrics.hp('1%')}}>Choose Type of Agent</RegularText>
+            <RegularText styles={{textAlign: 'center', fontSize: 14, padding: Metrics.hp('1%')}}>Choose Type of Agent</RegularText>
             <View style={{flexDirection: 'row'}}>
               {
                 this.state.agentType.map((agent, i) => <ButtonInvert onPress={() => this.setState({selectedAgentType: agent.name, selectedPrice: agent.price, animatePrice: true})} key={i} isSelected={selectedAgentType == agent.name ? true : false} iconName={agent.icon}>{agent.name}</ButtonInvert>)
@@ -318,9 +334,9 @@ class HomeScreen extends Component {
             animation={this.state.animatePrice ? 'bounceIn' : undefined} 
             onAnimationend={()=> this.setState({animatePrice: false})}
             duration={200}
-            styles={{color: Colors.primaryColor, fontWeight: 'bold', fontSize: Metrics.hp('2.5%')}}>₱{this.state.selectedPrice+' '} 
+            styles={{color: Colors.primaryColor, fontWeight: 'bold', fontSize: 13}}>₱{this.state.selectedPrice+' '} 
           </AnimatedText>
-          <RegularText styles={{color: Colors.secondaryColor, fontSize: Metrics.hp('2%')}}>per 30 mins</RegularText>
+          <RegularText styles={{color: Colors.secondaryColor, fontSize: 14}}>per 30 mins</RegularText>
         </View>
       </Animatable.View>
     )
@@ -395,7 +411,7 @@ class HomeScreen extends Component {
               end={{x: 1.5, y: 0}}
               style={{height: '100%', width: '100%', position: 'absolute'}}
             />
-            <RegularText styles={{color: Colors.white,fontSize: Metrics.hp('2%')}}>BOOK</RegularText>
+            <RegularText styles={{color: Colors.white, fontSize: 14}}>BOOK</RegularText>
           </AnimatableTouchableOpacity>
           {this.renderPrice()}
           {this.renderCategories()}
@@ -416,7 +432,7 @@ class HomeScreen extends Component {
               style={{height: '100%', width: '100%', position: 'absolute'}}
             />
             <RegularText
-              styles={{color: Colors.white, fontSize: Metrics.hp('3%')}}
+              styles={{color: Colors.white, fontSize: 20}}
             >
               Confirm
             </RegularText>
@@ -441,33 +457,9 @@ class HomeScreen extends Component {
     )
   }
 
-  renderActiveTaskPanel = () => {
+  renderMatchedPanel = () => {
     return (
-      <Interactable.View
-        verticalOnly={true}
-        snapPoints={[{y: Metrics.hp('2%')},{y: initialSnapPosition}]}
-        snapTo={[{y: 0}, {y: 150}]}
-        initialPosition={{y: initialSnapPosition}}
-        animatedValueY={this._deltaY}
-        animatedNativeDriver={true}
-        style={{alignItems: 'center'}}
-        ref={'book'}
-      >
-        <Animatable.View
-          animation="bounceInUp"
-          easing="ease-out"
-          duration={2000}
-          useNativeDriver={true}
-          style={{
-                  flexDirection: 'column',
-                  backgroundColor: 'white',
-                  overflow: 'hidden',
-                  height: Metrics.hp('75%'),
-                  width: Metrics.wp('96%'),
-                  borderRadius: 10,
-                  alignItems: 'center',
-                  elevation: 3}}
-        >
+      <View>
           <View style={{flex: 1}}>
             <TouchableOpacity
               onPress={()=>this.props.navigation.navigate('ChatScreen',{activeTaskId: this.state.activeTaskId})}
@@ -502,6 +494,47 @@ class HomeScreen extends Component {
               Cancel Task
             </RegularText>
           </TouchableOpacity>
+      </View>
+    )
+  }
+
+  renderPendingPanel = () => {
+    return (
+      <View style={{justifyContent: 'center', alignItems: 'center', padding: 20}}>
+        <RegularText styles={{fontWeight: 'bold', fontSize: 16}}>Searching for Agents...</RegularText>
+        <RegularText>Please wait as we match you. (This has no charge yet)</RegularText>
+      </View>
+    )
+  }
+
+  renderActiveTaskPanel = () => {
+    return (
+      <Interactable.View
+        verticalOnly={true}
+        snapPoints={[{y: Metrics.hp('2%')},{y: initialSnapPosition}]}
+        snapTo={[{y: 0}, {y: 150}]}
+        initialPosition={{y: initialSnapPosition}}
+        animatedValueY={this._deltaY}
+        animatedNativeDriver={true}
+        style={{alignItems: 'center'}}
+        ref={'book'}
+      >
+        <Animatable.View
+          animation="bounceInUp"
+          easing="ease-out"
+          duration={2000}
+          useNativeDriver={true}
+          style={{
+                  flexDirection: 'column',
+                  backgroundColor: 'white',
+                  overflow: 'hidden',
+                  height: (this.state.isPending ?  Metrics.hp('15%') : Metrics.hp('75%')),
+                  width: Metrics.wp('96%'),
+                  borderRadius: 10,
+                  alignItems: 'center',
+                  elevation: 3}}
+        >
+          {this.state.isPending ? this.renderPendingPanel() : this.renderMatchedPanel()}
         </Animatable.View>
         <TouchableOpacity 
           onPress={() => this.refs['book'].snapTo({index: 1})}
@@ -572,6 +605,9 @@ class HomeScreen extends Component {
   }
 
   createTask = () => {
+    this.refs['book'].snapTo({index: 1})
+
+    // this.setState({showRegister: true})
     let that = this
     const { displayName, photoURL } = this.props.user
     const { categories, user } = this.state
@@ -581,15 +617,33 @@ class HomeScreen extends Component {
         cphoto: photoURL,
         cuid: user.uid,
         active: true,
+        isPending: true,
         selectedCategories: categories
     })
     .then(function(docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        that.props.navigation.navigate('ChatScreen')
-        that.setState({hasActiveTask: true})
+        console.tron.log("Document written with ID: ", docRef.id);
+        // that.props.navigation.navigate('ChatScreen')
+        that.setState({hasActiveTask: true, isPending: true})
+        that.listenToTask(docRef.id)
+
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
+    });
+  }
+
+  listenToTask = (documentId) => {
+    let that = this
+    //Listen to changes
+    db.collection("tasks").doc(documentId)
+    .onSnapshot(function(doc) {
+        console.tron.log("Current data: ", doc.data());
+        if( doc.data().isPending === false ){
+          that.props.navigation.navigate('ChatScreen')
+          that.setState({isPending: false})
+        } else {
+
+        }
     });
   }
 
@@ -626,6 +680,7 @@ class HomeScreen extends Component {
         querySnapshot.forEach(doc => {
           console.tron.log(doc.id, '=>', doc.data());
           that.setState({activeTaskId: doc.id})
+          that.listenToTask(doc.id)
         });
         that.setState({hasActiveTask : true})
       }
@@ -640,7 +695,7 @@ class HomeScreen extends Component {
 
     return (
       <FakeMarker
-        profileImage={user.photoURL}
+        profileImage={Images.gustokoLogo}
       />
     )
   }
@@ -664,13 +719,20 @@ class HomeScreen extends Component {
               autoPlay
               loop
             />
-            <RegularText styles={{fontWeight: 'bold', fontSize: Metrics.hp('3%')}}>Oops, No Agents Near You.</RegularText>
+            <RegularText styles={{fontWeight: 'bold', fontSize: 14}}>Oops, No Agents Near You.</RegularText>
             <RegularText>Maybe you can apply as one?</RegularText>
             <TouchableOpacity
               onPress={()=> this.props.navigation.navigate('RegisterScreen')} 
               style={{justifyContent: 'center', alignItems: 'center', margin: 10, height: Metrics.hp('9%'), borderRadius: Metrics.hp('10%'), height: Metrics.hp('7%'), width: Metrics.wp('60%'), backgroundColor: Colors.primaryColor}}>
-              <RegularText styles={{color: Colors.white, fontSize: Metrics.hp('2%')}}>
-                PRESS HERE
+              <RegularText styles={{color: Colors.white, fontSize: 14}}>
+                APPLY NOW
+              </RegularText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={()=> this.setState({showRegister: false})} 
+              style={{justifyContent: 'center', alignItems: 'center', margin: 10, marginTop: 0, height: Metrics.hp('9%'), borderRadius: Metrics.hp('10%'), height: Metrics.hp('7%'), width: Metrics.wp('60%'), backgroundColor: Colors.white, borderWidth: 1, borderColor: Colors.primaryColor}}>
+              <RegularText styles={{color: Colors.primaryColor, fontSize: 14}}>
+                CANCEL
               </RegularText>
             </TouchableOpacity>
           </View>
@@ -719,7 +781,7 @@ class HomeScreen extends Component {
           }}>
           </Animatable.View>
           {!this.state.isFetching && (this.state.hasActiveTask ? this.renderActiveTaskPanel() : this.renderSlidingPanel())}
-          {this.renderRegister()}  
+          {this.state.showRegister && this.renderRegister()}  
         </View>
       </ScrollView>
     )

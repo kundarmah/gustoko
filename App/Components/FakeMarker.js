@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
 import { View, Text, Image } from 'react-native'
 import styles from './Styles/FakeMarkerStyle'
+import ImageResizeMode from 'react-native/Libraries/Image/ImageResizeMode'
+
 
 export default class FakeMarker extends Component {
   // // Prop type warnings
@@ -18,10 +20,12 @@ export default class FakeMarker extends Component {
   render () {
     const { profileImage } = this.props
     return (
-      <View style={[styles.container, styles.imageStyle]} pointerEvents="none">
+      <View style={[styles.container]} pointerEvents="none">
+        <View style={styles.pinTip}></View>
         <Image
+          resizeMode={'center'}
           style={styles.marker}
-          source={{uri: profileImage}}
+          source={profileImage}
         />
       </View>
     )
